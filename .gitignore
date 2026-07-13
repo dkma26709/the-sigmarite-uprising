@@ -1,0 +1,5 @@
+# DM-only notes — spoilers for other players
+private/
+
+# Claude Code local settings
+.claude/settings.local.json

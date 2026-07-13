@@ -1,0 +1,10 @@
+{
+  "campaign": {
+    "name": "The Sigmarite Uprising",
+    "reference": "Campaign Reference.md"
+  },
+  "factions": [],
+  "scenarios": [
+    { "id": "prologue", "name": "The First Battle", "md": "scenarios/Prologue - The First Battle.md", "map": null, "status": "completed", "result": "" }
+  ]
+}

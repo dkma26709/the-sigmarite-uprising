@@ -1,0 +1,9 @@
+{
+  "name": "The Sigmarite Uprising — Campaign",
+  "short_name": "Sigmarite Uprising",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14100e",
+  "theme_color": "#14100e",
+  "description": "Campaign companion for The Sigmarite Uprising Warhammer Fantasy campaign"
+}
