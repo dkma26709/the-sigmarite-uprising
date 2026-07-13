@@ -45,11 +45,17 @@ Warhammer Armies Project (WAP), **v3.1** *(exact version to be confirmed)*.
 
 ## The Warbands
 
-*Five players. Rosters to be recorded.*
+Five commanders. The war turns on two: **Anders**, who leads the Empire slaves in revolt, and **Frederik**, whose Chaos Dwarfs hold the whip. The other three fly no fixed banner — they march with whatever host the moment demands, allies and opportunists both.
 
-| Player | Warband | Side | Notes |
-|--------|---------|------|-------|
-| — | — | — | — |
+| Player | Army | Role |
+|--------|------|------|
+| Anders | The Empire | The Uprising — the Sigmarite rebels |
+| Frederik | Chaos Dwarfs | The Slavers — the Dawi-Zharr masters |
+| Kristian | Tomb Kings | Recurring |
+| Jesper | Orcs & Goblins · Ogre Kingdoms · Warriors of Chaos · Dwarfs | Recurring — no fixed army |
+| Daniel | Lizardmen *(also High Elves, Daemons of Chaos)* | Recurring |
+
+*Full rosters and hero sheets live under **Warbands**.*
 
 ---
 

@@ -3,7 +3,23 @@
     "name": "The Sigmarite Uprising",
     "reference": "Campaign Reference.md"
   },
-  "factions": [],
+  "factions": [
+    { "id": "empire", "name": "The Empire", "player": "Anders", "tabs": [
+      { "id": "army", "label": "Warband", "md": "factions/empire/army.md" }
+    ] },
+    { "id": "chaos-dwarfs", "name": "Chaos Dwarfs", "player": "Frederik", "tabs": [
+      { "id": "army", "label": "Warband", "md": "factions/chaos-dwarfs/army.md" }
+    ] },
+    { "id": "tomb-kings", "name": "Tomb Kings", "player": "Kristian", "tabs": [
+      { "id": "army", "label": "Warband", "md": "factions/tomb-kings/army.md" }
+    ] },
+    { "id": "jesper", "name": "Rotating Warband", "player": "Jesper", "tabs": [
+      { "id": "army", "label": "Armies", "md": "factions/jesper/army.md" }
+    ] },
+    { "id": "lizardmen", "name": "Lizardmen", "player": "Daniel", "tabs": [
+      { "id": "army", "label": "Warband", "md": "factions/lizardmen/army.md" }
+    ] }
+  ],
   "scenarios": [
     { "id": "prologue", "name": "The First Battle", "md": "scenarios/Prologue - The First Battle.md", "map": null, "status": "completed", "result": "" }
   ]
