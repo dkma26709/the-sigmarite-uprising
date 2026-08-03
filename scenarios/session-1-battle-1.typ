@@ -1,4 +1,4 @@
-#import "template.typ": *
+﻿#import "template.typ": *
 
 #show: scenario.with(
   title: [The 14#super[th] Lizardmen Incursion],
@@ -31,7 +31,7 @@
   ],
 )
 
-#armies(draft: true)[
+#armies[
   *1,500 points* per side: Chaos Dwarfs against Lizardmen.
 
   Campaign list rules apply:
@@ -41,7 +41,7 @@
   - One magic item worth a maximum of 25 points
 ]
 
-#battlefield(draft: true)[
+#battlefield[
   The battlefield is defined by a ruined temple complex in the centre. Mark
   the four artefacts with tokens (see *The Four Artefacts*).
 
@@ -71,7 +71,7 @@
   The game ends after six turns.
 ]
 
-#special-rules(draft: true)[
+#special-rules[
   #special-rule[The Four Artefacts][
     Four artefacts are located within the ruined temple. The first three are
     ancient magical objects that the Chaos Dwarfs intend to dismantle and
@@ -117,7 +117,7 @@
   ]
 ]
 
-#aftermath(draft: true)[
+#aftermath[
   #special-rule[The Furnaces of Zharr][
     After the battle, the Chaos Dwarf player makes one roll on the following
     table for each of the *first three* artefacts in their control at the

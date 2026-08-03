@@ -173,7 +173,7 @@
 
   if cover {
     // ── Cover page: sides + artwork + intro ──
-    v(8pt)
+    v(-10pt)
     if sides.len() > 0 { sides-banner(sides) }
     if status != none {
       v(4pt)
