@@ -47,6 +47,13 @@
 #let victory(body) = section("Victory Conditions", body, accent: ember)
 #let aftermath(body) = section("Aftermath", body, accent: blood)
 
+// Battle-report sections — reports use the same scenario() wrapper,
+// typically with round: [Session N — Battle Report].
+#let the-battle(body) = section("The Battle", body)
+#let casualties(body) = section("Casualties & Death Rolls", body, accent: blood)
+#let spoils(body) = section("Spoils", body, accent: ember)
+#let consequences(body) = section("Consequences", body, accent: blood)
+
 // A named special rule in a bordered plaque.
 #let special-rule(title, body) = block(
   breakable: false,
