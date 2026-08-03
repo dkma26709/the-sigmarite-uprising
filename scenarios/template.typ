@@ -120,17 +120,22 @@
     columns: sides.len() * 2 - 1,
     column-gutter: 14pt,
     align: center + horizon,
-    ..sides.map(s => [
-      #text(weight: 700, size: 11pt, fill: iron, s.at(0)) \
-      #text(size: 8.5pt, fill: gold, smallcaps(s.at(1)))
-    ]).intersperse(text(size: 10pt, fill: blood, weight: 700, smallcaps[vs])),
+    ..sides.map(s => {
+      let (name, ..role) = s
+      if role.len() > 0 [
+        #text(weight: 700, size: 11pt, fill: iron, name) \
+        #text(size: 8.5pt, fill: gold, smallcaps(role.first()))
+      ] else [
+        #text(weight: 700, size: 11pt, fill: iron, name)
+      ]
+    }).intersperse(text(size: 10pt, fill: blood, weight: 700, smallcaps[vs])),
   ),
 ))
 
 #let scenario(
   title: [],
   round: [],       // e.g. [Session 1 · Battle One]
-  sides: (),       // array of (name, role) pairs, e.g. (([Chaos Dwarfs], [The Slavers]), ...)
+  sides: (),       // array of (name,) or (name, role) entries, e.g. (([Chaos Dwarfs],), ...)
   art: none,       // path to cover artwork (relative to scenarios/); none → placeholder
   intro: none,     // cover-page flavour text; none → placeholder
   status: none,    // e.g. [Fought, write-up pending]

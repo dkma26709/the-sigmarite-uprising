@@ -4,8 +4,8 @@
   title: [The 14#super[th] Lizardmen Incursion],
   round: [Session 1 · Battle Report],
   sides: (
-    ([Chaos Dwarfs], [Frederik, Main Player]),
-    ([Lizardmen], [Daniel, Stand-in]),
+    ([Chaos Dwarfs],),
+    ([Lizardmen],),
   ),
   status: [Not yet fought],
   cover: false,

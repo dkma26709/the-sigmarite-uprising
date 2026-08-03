@@ -4,8 +4,8 @@
   title: [The 14#super[th] Lizardmen Incursion],
   round: [Session 1 · Battle One],
   sides: (
-    ([Chaos Dwarfs], [Frederik, Main Player]),
-    ([Lizardmen], [Daniel, Stand-in]),
+    ([Chaos Dwarfs],),
+    ([Lizardmen],),
   ),
   art: "art/session-1-battle-1.png",
   intro: [
@@ -32,10 +32,7 @@
 )
 
 #armies(draft: true)[
-  *1,500 points* per side.
-
-  - *Main player:* Frederik with Chaos Dwarfs
-  - *Stand-in:* Daniel with Lizardmen
+  *1,500 points* per side: Chaos Dwarfs against Lizardmen.
 
   Campaign list rules apply:
   - "Heroes" only
