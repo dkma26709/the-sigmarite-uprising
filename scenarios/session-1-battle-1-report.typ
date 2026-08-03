@@ -1,10 +1,14 @@
 #import "template.typ": *
 
 #show: scenario.with(
-  title: [Battle One],
-  round: [Session 1 — Battle Report],
-  sides: (),
+  title: [The 14#super[th] Lizardmen Incursion],
+  round: [Session 1 · Battle Report],
+  sides: (
+    ([Chaos Dwarfs], [Frederik, Main Player]),
+    ([Lizardmen], [Daniel, Stand-in]),
+  ),
   status: [Not yet fought],
+  cover: false,
 )
 
 #the-battle[

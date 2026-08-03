@@ -2,9 +2,10 @@
 
 #show: scenario.with(
   title: [Battle Two],
-  round: [Session 1 — Battle Report],
+  round: [Session 1 · Battle Report],
   sides: (),
   status: [Not yet fought],
+  cover: false,
 )
 
 #the-battle[

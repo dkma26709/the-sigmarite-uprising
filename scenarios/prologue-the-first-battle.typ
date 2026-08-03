@@ -7,13 +7,13 @@
     ([Chaos Dwarfs], [The Slavers]),
     ([The Empire], [The Uprising]),
   ),
-  flavour: [
-    The prologue of the Sigmarite Uprising — an introduction and tutorial
+  intro: [
+    The prologue of the Sigmarite Uprising: an introduction and tutorial
     clash. Chaos Dwarfs against the Empire, as the enslaved make their first
     desperate bid for freedom and scramble to arm themselves from their
     masters' stores.
   ],
-  status: [Fought — write-up pending],
+  status: [Fought, write-up pending],
 )
 
 #overview[

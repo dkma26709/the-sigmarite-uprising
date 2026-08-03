@@ -2,25 +2,41 @@
 
 #show: scenario.with(
   title: [Battle Two],
-  round: [Session 1 — Round 1: Gather Magic Items],
+  round: [Session 1 · Battle Two],
   sides: (),
-  flavour: [
-    _Premise to be written._
-  ],
 )
 
-#overview[
+// All sections are optional — delete any that this scenario does not need.
+// Remove `draft: true` from a section once it is agreed at the table.
+
+#armies(draft: true)[
   _To be written._
 ]
 
-#battlefield[
+#battlefield(draft: true)[
   _To be written._
 ]
 
-#victory[
+#deployment(draft: true)[
   _To be written._
 ]
 
-#aftermath[
+#first-turn(draft: true)[
+  _To be written._
+]
+
+#game-length(draft: true)[
+  _To be written._
+]
+
+#victory(draft: true)[
+  _To be written._
+]
+
+#special-rules(draft: true)[
+  _To be written._
+]
+
+#aftermath(draft: true)[
   _To be written._
 ]

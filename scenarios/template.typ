@@ -1,9 +1,20 @@
 // The Sigmarite Uprising — shared scenario template.
-// Usage:
+//
+// Scenario usage:
 //   #import "template.typ": *
-//   #show: scenario.with(title: [...], round: [...], sides: (...), flavour: [...])
-// Then write the scenario body using the helpers below
-// (overview, battlefield, special-rule, victory, aftermath).
+//   #show: scenario.with(
+//     title: [...], round: [...], sides: (...),
+//     art: "art/<file>.png",   // omit for a placeholder frame
+//     intro: [...],            // cover-page flavour text; omit for a placeholder
+//   )
+// The cover page (artwork + intro) is generated automatically; the body
+// starts on page 2 using the section helpers:
+//   armies, battlefield, deployment, first-turn, game-length, victory,
+//   special-rules, aftermath — plus special-rule(title)[...] plaques,
+//   which may be attached inside any section.
+//
+// Battle reports pass `cover: false` and use: the-battle, casualties,
+// spoils, consequences.
 
 // Palette — print-friendly take on the campaign site colours.
 #let gold = rgb("#937530")
@@ -24,9 +35,13 @@
 }
 
 // A titled banner section, used by the section helpers below.
-#let section(title, body, accent: gold) = {
+// All sections are optional — include only what the scenario needs.
+// draft: true adds a "Draft" chip to the heading; new scenarios start with
+// every section marked draft, and the chip is removed once a section is
+// agreed at the table.
+#let section(title, body, accent: gold, draft: false) = {
   v(10pt)
-  block(breakable: false, {
+  block(breakable: false, sticky: true, {
     text(
       font: "Libertinus Serif",
       size: 13pt,
@@ -35,6 +50,15 @@
       tracking: 1.5pt,
       smallcaps(title),
     )
+    if draft {
+      h(8pt)
+      box(
+        baseline: 20%,
+        inset: (x: 5pt, y: 2.5pt),
+        stroke: (paint: blood, thickness: 0.7pt, dash: "dashed"),
+        text(size: 8pt, weight: 700, fill: blood, tracking: 1.5pt, smallcaps[Draft]),
+      )
+    }
     v(-6pt)
     line(length: 100%, stroke: 0.6pt + accent.lighten(30%))
     v(2pt)
@@ -42,19 +66,25 @@
   body
 }
 
-#let overview(body) = section("Overview", body)
-#let battlefield(body) = section("Battlefield & Deployment", body)
-#let victory(body) = section("Victory Conditions", body, accent: ember)
-#let aftermath(body) = section("Aftermath", body, accent: blood)
+// Scenario sections, in reading order.
+#let armies(body, draft: false) = section("Armies", body, draft: draft)
+#let battlefield(body, draft: false) = section("The Battlefield", body, draft: draft)
+#let deployment(body, draft: false) = section("Deployment", body, draft: draft)
+#let first-turn(body, draft: false) = section("First Turn", body, draft: draft)
+#let game-length(body, draft: false) = section("Game Length", body, draft: draft)
+#let victory(body, draft: false) = section("Victory Conditions", body, accent: ember, draft: draft)
+#let special-rules(body, draft: false) = section("Special Rules", body, accent: ember, draft: draft)
+#let aftermath(body, draft: false) = section("Aftermath", body, accent: blood, draft: draft)
+#let overview(body, draft: false) = section("Overview", body, draft: draft)
 
-// Battle-report sections — reports use the same scenario() wrapper,
-// typically with round: [Session N — Battle Report].
+// Battle-report sections — reports use the same scenario() wrapper with
+// cover: false, typically with round: [Session N · Battle Report].
 #let the-battle(body) = section("The Battle", body)
 #let casualties(body) = section("Casualties & Death Rolls", body, accent: blood)
 #let spoils(body) = section("Spoils", body, accent: ember)
 #let consequences(body) = section("Consequences", body, accent: blood)
 
-// A named special rule in a bordered plaque.
+// A named special rule in a bordered plaque. Attach inside any section.
 #let special-rule(title, body) = block(
   breakable: false,
   width: 100%,
@@ -68,12 +98,43 @@
   },
 )
 
+// An open design question — visibly flagged so drafts are never mistaken
+// for agreed rules.
+#let to-be-decided(body) = block(
+  breakable: false,
+  width: 100%,
+  inset: (x: 12pt, y: 10pt),
+  stroke: (paint: blood, thickness: 1pt, dash: "dashed"),
+  {
+    text(size: 10pt, weight: 700, fill: blood, smallcaps[To be decided])
+    v(4pt)
+    body
+  },
+)
+
+#let sides-banner(sides) = align(center, block(
+  inset: (x: 14pt, y: 8pt),
+  stroke: 0.6pt + gold,
+  fill: parchment-dark,
+  grid(
+    columns: sides.len() * 2 - 1,
+    column-gutter: 14pt,
+    align: center + horizon,
+    ..sides.map(s => [
+      #text(weight: 700, size: 11pt, fill: iron, s.at(0)) \
+      #text(size: 8.5pt, fill: gold, smallcaps(s.at(1)))
+    ]).intersperse(text(size: 10pt, fill: blood, weight: 700, smallcaps[vs])),
+  ),
+))
+
 #let scenario(
   title: [],
-  round: [],       // e.g. [Prologue] or [Round 3]
+  round: [],       // e.g. [Session 1 · Battle One]
   sides: (),       // array of (name, role) pairs, e.g. (([Chaos Dwarfs], [The Slavers]), ...)
-  flavour: none,   // italic opening text
-  status: none,    // e.g. [Fought — write-up pending.]
+  art: none,       // path to cover artwork (relative to scenarios/); none → placeholder
+  intro: none,     // cover-page flavour text; none → placeholder
+  status: none,    // e.g. [Fought, write-up pending]
+  cover: true,     // false → compact single-header layout (battle reports)
   body,
 ) = {
   set page(
@@ -106,32 +167,53 @@
   })
   chain-rule
 
-  if flavour != none {
-    align(center, block(width: 88%, text(style: "italic", size: 10.5pt, fill: ink.lighten(15%), flavour)))
-    v(4pt)
-  }
+  if cover {
+    // ── Cover page: artwork + sides + intro ──
+    v(6pt)
+    if art != none {
+      block(
+        width: 100%,
+        stroke: 1pt + gold,
+        inset: 3pt,
+        fill: parchment-dark,
+        image(art, width: 100%, height: 11.5cm, fit: "cover"),
+      )
+    } else {
+      block(
+        width: 100%,
+        height: 11.5cm,
+        stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
+        fill: parchment-dark,
+        align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
+      )
+    }
+    v(10pt)
 
-  // Sides banner
-  if sides.len() > 0 {
-    align(center, block(
-      inset: (x: 14pt, y: 8pt),
-      stroke: 0.6pt + gold,
-      fill: parchment-dark,
-      grid(
-        columns: sides.len() * 2 - 1,
-        column-gutter: 14pt,
-        align: center + horizon,
-        ..sides.map(s => [
-          #text(weight: 700, size: 11pt, fill: iron, s.at(0)) \
-          #text(size: 8.5pt, fill: gold, smallcaps(s.at(1)))
-        ]).intersperse(text(size: 10pt, fill: blood, weight: 700, smallcaps[vs])),
-      ),
-    ))
-  }
+    if sides.len() > 0 { sides-banner(sides) }
+    if status != none {
+      v(4pt)
+      align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
+    }
+    v(10pt)
 
-  if status != none {
-    v(4pt)
-    align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
+    if intro != none {
+      block(width: 100%, text(style: "italic", size: 11pt, fill: ink.lighten(15%), intro))
+    } else {
+      align(center, text(style: "italic", fill: gold, [Introduction to come.]))
+    }
+
+    pagebreak()
+  } else {
+    // ── Compact header (battle reports) ──
+    if sides.len() > 0 { sides-banner(sides) }
+    if status != none {
+      v(4pt)
+      align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
+    }
+    if intro != none {
+      v(4pt)
+      align(center, block(width: 88%, text(style: "italic", size: 10.5pt, fill: ink.lighten(15%), intro)))
+    }
   }
 
   body
