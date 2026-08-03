@@ -3,3 +3,7 @@ private/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Compiled scenario PDFs (built on deploy) and site build output
+pdfs/
+_site/

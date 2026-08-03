@@ -21,6 +21,6 @@
     ] }
   ],
   "scenarios": [
-    { "id": "prologue", "name": "The First Battle", "md": "scenarios/Prologue - The First Battle.md", "map": null, "status": "completed", "result": "" }
+    { "id": "prologue", "name": "The First Battle", "typ": "scenarios/prologue-the-first-battle.typ", "pdf": "pdfs/prologue-the-first-battle.pdf", "map": null, "status": "completed", "result": "" }
   ]
 }

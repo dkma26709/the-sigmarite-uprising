@@ -34,6 +34,14 @@ This repository is the living record of the campaign — warband rosters, hero s
 
 **To contribute:** edit files on GitHub directly, or clone the repository and work locally. If you are unsure how, ask Daniel.
 
+### Scenarios
+
+Scenarios are written in [Typst](https://typst.app/) under `scenarios/`, one `.typ` file per battle, all sharing `scenarios/template.typ`. On every push to `main`, a GitHub Actions workflow compiles each scenario to a print-ready PDF and deploys the site — the PDFs are not committed to the repository.
+
+To add a scenario: copy an existing `.typ` file in `scenarios/`, write the battle, and add an entry to `manifest.json` with its `pdf` path (`pdfs/<filename>.pdf`).
+
+To preview locally: install Typst (`winget install --id Typst.Typst`), run `.\build.ps1` to compile the PDFs, then serve the folder (e.g. `python -m http.server`).
+
 ---
 
 *Sigmar wills it. Break the chains.*
