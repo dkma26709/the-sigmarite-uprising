@@ -29,8 +29,6 @@
 #let chain-rule = {
   v(2pt)
   line(length: 100%, stroke: 0.8pt + gold)
-  v(-4.5pt)
-  line(length: 100%, stroke: 0.4pt + gold-bright)
   v(2pt)
 }
 
@@ -146,6 +144,10 @@
     paper: "a4",
     fill: parchment,
     margin: (x: 2.2cm, y: 2cm),
+    header: {
+      set text(size: 8pt, fill: ember, tracking: 1.5pt)
+      align(right, smallcaps(round))
+    },
     footer: context {
       set text(size: 8pt, fill: gold, tracking: 1pt)
       grid(
@@ -167,14 +169,17 @@
     text(size: 9pt, fill: gold, tracking: 3pt, smallcaps[The Sigmarite Uprising])
     v(2pt)
     text(size: 26pt, weight: 700, fill: iron, title)
-    v(1pt)
-    text(size: 11pt, fill: ember, tracking: 2pt, smallcaps(round))
   })
-  chain-rule
 
   if cover {
-    // ── Cover page: artwork + sides + intro ──
-    v(6pt)
+    // ── Cover page: sides + artwork + intro ──
+    v(8pt)
+    if sides.len() > 0 { sides-banner(sides) }
+    if status != none {
+      v(4pt)
+      align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
+    }
+    v(10pt)
     if art != none {
       block(
         width: 100%,
@@ -192,14 +197,7 @@
         align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
       )
     }
-    v(10pt)
-
-    if sides.len() > 0 { sides-banner(sides) }
-    if status != none {
-      v(4pt)
-      align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
-    }
-    v(10pt)
+    v(12pt)
 
     if intro != none {
       block(width: 100%, text(style: "italic", size: 11pt, fill: ink.lighten(15%), intro))
