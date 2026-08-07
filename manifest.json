@@ -23,6 +23,6 @@
   "scenarios": [
     { "id": "prologue", "name": "The First Battle", "typ": "scenarios/prologue-the-first-battle.typ", "pdf": "pdfs/prologue-the-first-battle.pdf", "print": "pdfs/prologue-the-first-battle-print.pdf", "map": null, "status": "completed", "result": "" },
     { "id": "s1b1", "name": "The 14th Lizardmen Incursion", "typ": "scenarios/session-1-battle-1.typ", "pdf": "pdfs/session-1-battle-1.pdf", "print": "pdfs/session-1-battle-1-print.pdf", "report": "pdfs/session-1-battle-1-report.pdf", "map": null, "status": "planned", "result": "" },
-    { "id": "s1b2", "name": "Tomb Raider", "typ": "scenarios/session-1-battle-2.typ", "pdf": "pdfs/session-1-battle-2.pdf", "print": "pdfs/session-1-battle-2-print.pdf", "report": "pdfs/session-1-battle-2-report.pdf", "map": null, "status": "planned", "result": "" }
+    { "id": "s1b2", "name": "Tomb Raider", "typ": "scenarios/session-1-battle-2.typ", "pdf": "pdfs/session-1-battle-2.pdf", "print": "pdfs/session-1-battle-2-print.pdf", "report": "pdfs/session-1-battle-2-report.pdf", "map": "scenarios/art/session-1-battle-2-map.png", "status": "planned", "result": "" }
   ]
 }
