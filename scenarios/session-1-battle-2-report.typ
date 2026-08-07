@@ -1,9 +1,12 @@
 #import "template.typ": *
 
 #show: scenario.with(
-  title: [Battle Two],
+  title: [Tomb Raider],
   round: [Session 1 · Battle Report],
-  sides: (),
+  sides: (
+    ([The Empire],),
+    ([Tomb Kings],),
+  ),
   status: [Not yet fought],
   cover: false,
 )
