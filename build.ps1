@@ -1,4 +1,6 @@
-# Compile every scenario in scenarios/*.typ to pdfs/<name>.pdf.
+# Compile every scenario in scenarios/*.typ twice:
+#   pdfs/<name>.pdf        the full colour edition
+#   pdfs/<name>-print.pdf  print-friendly: no cover art, greyscale on white
 # Requires the Typst CLI: winget install --id Typst.Typst
 $ErrorActionPreference = 'Stop'
 
@@ -17,6 +19,10 @@ Get-ChildItem scenarios -Filter *.typ | Where-Object { $_.BaseName -ne 'template
     Write-Host "Compiling $($_.Name)"
     & $typst compile $_.FullName "pdfs\$($_.BaseName).pdf"
     if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $($_.Name)" }
+
+    Write-Host "Compiling $($_.Name) (print)"
+    & $typst compile --input print=true $_.FullName "pdfs\$($_.BaseName)-print.pdf"
+    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $($_.Name) (print)" }
 }
 
 Write-Host "Done. PDFs are in pdfs\"

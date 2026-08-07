@@ -797,8 +797,10 @@ async function loadScenario(id) {
   if (s.pdf) {
     const reportLink = s.report && s.status === 'completed'
       ? `<a class="pdf-download" href="${s.report}" target="_blank">Battle Report</a>` : '';
+    const printLink = s.print
+      ? `<a class="pdf-download" href="${s.print}" target="_blank">Print Version</a>` : '';
     main.innerHTML = `<div class="pdf-view">
-      <div class="pdf-bar">${reportLink}<a class="pdf-download" href="${s.pdf}" target="_blank">Open / Download PDF</a></div>
+      <div class="pdf-bar">${reportLink}${printLink}<a class="pdf-download" href="${s.pdf}" target="_blank">Open / Download PDF</a></div>
       <object class="pdf-frame" data="${s.pdf}" type="application/pdf">
         <div class="md"><p>This browser cannot display PDFs inline — <a href="${s.pdf}">download the scenario sheet</a> instead.</p></div>
       </object>

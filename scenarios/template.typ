@@ -16,15 +16,23 @@
 // Battle reports pass `cover: false` and use: the-battle, casualties,
 // spoils, consequences.
 
-// Palette — print-friendly take on the campaign site colours.
-#let gold = rgb("#937530")
-#let gold-bright = rgb("#b8933d")
-#let ember = rgb("#a83d15")
-#let blood = rgb("#6b1414")
-#let iron = rgb("#241c15")
-#let ink = rgb("#2a2118")
-#let parchment = rgb("#f7f1e3")
-#let parchment-dark = rgb("#ece1c8")
+// Print mode — compile with `typst compile --input print=true` for the
+// print-friendly edition: no cover artwork, no cover page break, and a
+// greyscale palette on white paper. See build.ps1, which emits both
+// editions of every scenario.
+#let print-mode = ("true", "1", "yes").contains(
+  lower(sys.inputs.at("print", default: "false")),
+)
+
+// Palette — colour edition, then the greyscale print edition.
+#let gold = if print-mode { rgb("#5a5a5a") } else { rgb("#937530") }
+#let gold-bright = if print-mode { rgb("#767676") } else { rgb("#b8933d") }
+#let ember = if print-mode { rgb("#2e2e2e") } else { rgb("#a83d15") }
+#let blood = if print-mode { rgb("#1f1f1f") } else { rgb("#6b1414") }
+#let iron = if print-mode { rgb("#000000") } else { rgb("#241c15") }
+#let ink = if print-mode { rgb("#141414") } else { rgb("#2a2118") }
+#let parchment = if print-mode { rgb("#ffffff") } else { rgb("#f7f1e3") }
+#let parchment-dark = if print-mode { rgb("#ededed") } else { rgb("#ece1c8") }
 
 #let chain-rule = {
   v(2pt)
@@ -179,33 +187,37 @@
       v(4pt)
       align(center, text(size: 9pt, fill: gold, smallcaps[Status: #status]))
     }
-    v(10pt)
-    if art != none {
-      block(
-        width: 100%,
-        stroke: 1pt + gold,
-        inset: 3pt,
-        fill: parchment-dark,
-        image(art, width: 100%, height: 11.5cm, fit: "cover"),
-      )
-    } else {
-      block(
-        width: 100%,
-        height: 11.5cm,
-        stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
-        fill: parchment-dark,
-        align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
-      )
+    // The print edition drops the cover artwork entirely and lets the intro
+    // run straight into the rules rather than leaving a near-empty page.
+    if not print-mode {
+      v(10pt)
+      if art != none {
+        block(
+          width: 100%,
+          stroke: 1pt + gold,
+          inset: 3pt,
+          fill: parchment-dark,
+          image(art, width: 100%, height: 11.5cm, fit: "cover"),
+        )
+      } else {
+        block(
+          width: 100%,
+          height: 11.5cm,
+          stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
+          fill: parchment-dark,
+          align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
+        )
+      }
     }
     v(12pt)
 
     if intro != none {
       block(width: 100%, text(style: "italic", size: 11pt, fill: ink.lighten(15%), intro))
-    } else {
+    } else if not print-mode {
       align(center, text(style: "italic", fill: gold, [Introduction to come.]))
     }
 
-    pagebreak()
+    if not print-mode { pagebreak() }
   } else {
     // ── Compact header (battle reports) ──
     if sides.len() > 0 { sides-banner(sides) }

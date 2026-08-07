@@ -33,6 +33,7 @@ jobs:
             [ "$name" = "template" ] && continue
             echo "Compiling $src"
             typst compile "$src" "pdfs/$name.pdf"
+            typst compile --input print=true "$src" "pdfs/$name-print.pdf"
           done
 
       - name: Assemble site
