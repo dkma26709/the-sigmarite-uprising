@@ -1,0 +1,59 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Compile scenarios to PDF
+        shell: bash
+        run: |
+          mkdir -p pdfs
+          shopt -s nullglob
+          for src in scenarios/*.typ; do
+            name="$(basename "$src" .typ)"
+            [ "$name" = "template" ] && continue
+            echo "Compiling $src"
+            typst compile "$src" "pdfs/$name.pdf"
+            typst compile --input print=true "$src" "pdfs/$name-print.pdf"
+          done
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html manifest.json app.webmanifest _site/
+          cp -r pdfs _site/
+          cp -r factions _site/
+          cp "Campaign Reference.md" _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
