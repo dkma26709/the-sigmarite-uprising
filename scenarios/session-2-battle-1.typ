@@ -199,9 +199,20 @@
     Reroll duplicate results. Each item may only be bought once.
   ]
 
+  #special-rule[The Bellowing Sabatons][
+    If the *Great Sacred Beast* is still chained at the end of the battle, it
+    is dragged back to the forge alive. The daemonsmiths do not waste such a
+    soul on haulage. They beat it out of the animal and bind it into a pair of
+    brass-shod boots, where it goes on bellowing for the rest of its owner's
+    life.
+
+    The Chaos Dwarf player gains *The Bellowing Sabatons* and may give them to
+    an eligible character. The bearer gains the *Stomp* special rule, making
+    D6 stomp attacks.
+  ]
+
   #to-be-decided[
     - The three items on the auction table.
-    - What becomes of the *Great Sacred Beast*, chained, freed or slain, and
-      what a freed beast is worth to the Lizardmen.
+    - What a freed beast is worth to the Lizardmen, if anything.
   ]
 ]
