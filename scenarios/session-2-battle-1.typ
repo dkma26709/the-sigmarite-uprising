@@ -102,23 +102,6 @@
   The game ends after six turns.
 ]
 
-#victory(draft: true)[
-  Victory points are scored for the beasts alone. Nothing else scores.
-
-  #table(
-    columns: (1fr, auto, auto, auto),
-    align: (left, center, center, center),
-    table.header[Beast][Still chained][Freed and alive][Slain],
-    [Lesser Sacred Beast (two)], [1 VP Chaos Dwarfs], [1 VP Lizardmen], [none],
-    [Great Sacred Beast], [2 VP Chaos Dwarfs], [2 VP Lizardmen], [none],
-  )
-
-  Four victory points are on the table. The highest total wins; equal totals
-  are a draw.
-
-  A slain beast scores for nobody, so a cannonball settles nothing.
-]
-
 #special-rules[
   #special-rule[The Sacred Beasts][
     Three beasts are chained in the camp: two Lesser Sacred Beasts and one
