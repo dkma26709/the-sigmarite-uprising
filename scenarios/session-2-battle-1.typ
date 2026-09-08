@@ -179,15 +179,29 @@
 ]
 
 #aftermath(draft: true)[
-  #to-be-decided[
-    Campaign consequences are not written yet. Sketches worth arguing about:
+  #special-rule[The Slave Market][
+    A Lesser Sacred Beast is sacred to nobody in Zharr Naggrund. It is stock,
+    and stock is sold.
 
-    - Beasts still chained at the end of the battle become Chaos Dwarf
-      haulage, shortening their supply line and granting something concrete
-      in a later scenario.
-    - Beasts freed and alive return to the jungle owing a debt, and may come
-      back on the Lizardmen side.
-    - A slain beast is remembered kindly by nobody, and may sour the
-      Lizardmen towards whoever struck the killing blow.
+    For each *Lesser Sacred Beast* still chained at the end of the battle, the
+    Chaos Dwarf player rolls once on the table below. If *both* Lesser Beasts
+    are still chained, they roll one additional time: three rolls in all.
+
+    #table(
+      columns: (auto, 1fr),
+      align: (center, left),
+      table.header[D3][Bought at Auction],
+      [1], [_To be provided_],
+      [2], [_To be provided_],
+      [3], [_To be provided_],
+    )
+
+    Reroll duplicate results. Each item may only be bought once.
+  ]
+
+  #to-be-decided[
+    - The three items on the auction table.
+    - What becomes of the *Great Sacred Beast*, chained, freed or slain, and
+      what a freed beast is worth to the Lizardmen.
   ]
 ]
