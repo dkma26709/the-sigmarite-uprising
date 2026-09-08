@@ -178,7 +178,7 @@
   ]
 ]
 
-#aftermath(draft: true)[
+#aftermath[
   #special-rule[The Slave Market][
     A Lesser Sacred Beast is sacred to nobody in Zharr Naggrund. It is stock,
     and stock is sold.
@@ -208,9 +208,5 @@
 
     The Chaos Dwarf player gains *The Bellowing Sabatons* and may give them to
     any character. The bearer gains the _Stomp (D6)_ special rule.
-  ]
-
-  #to-be-decided[
-    What a freed beast is worth to the Lizardmen, if anything.
   ]
 ]
