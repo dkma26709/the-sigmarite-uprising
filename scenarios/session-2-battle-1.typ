@@ -151,21 +151,22 @@
     A freed beast is not a Lizardmen unit. It is a terrified animal loose in a
     burning camp, and it treats every model of both armies as an enemy.
 
-    At the start of each game turn, before either player moves, roll for every
+    At the start of each new round, before either player moves, roll for every
     freed beast that is not engaged in close combat, resolving the Great Beast
-    first. Roll the Scatter dice and 2D6:
+    first. Roll the Scatter dice and 2D6, and move the beast 2D6" in the
+    direction shown. The beast always scatters: on a Hit, use the small arrow
+    printed on that face.
 
-    - *Arrow:* the beast moves 2D6" in that direction.
-    - *Hit:* the beast moves 2D6" towards the nearest unit it can see.
+    If the beast's path takes it into a unit of either army, it stops there
+    and engages that unit. It counts as having charged, and the combat is
+    fought in that round's Close Combat phase as normal. If the path takes the
+    beast into impassable terrain or off the table, it stops 1" short.
 
-    If the move brings the beast into contact with a unit, it counts as having
-    charged that unit, and the combat is fought in that turn's Close Combat
-    phase as normal. If the move would take the beast into impassable terrain
-    or off the table, it stops 1" short.
-
-    A freed beast fights and pursues as normal. It never flees and never
-    breaks. It does not roll for random movement in a turn in which it begins
-    engaged.
+    A freed beast never flees and never breaks, and it does not roll for
+    random movement in a round in which it begins engaged. It never pursues a
+    fleeing enemy. When the unit it is fighting flees or is destroyed, the
+    beast simply stands where it is and stampedes again at the start of the
+    next round.
   ]
 
   #special-rule[Killing a Beast][
@@ -184,8 +185,6 @@
     - Do the beast profiles hold up at 1,500 points? The Great Beast is
       pitched at roughly Stegadon weight and could flatten a hero-only
       warband on a bad scatter.
-    - Should scatter distance stay 2D6" for both, or go to 3D6" for the
-      Lesser Beasts to make them wilder and harder to aim at anyone?
     - May the Chaos Dwarfs act on the beasts at all: reinforce chains, goad a
       beast into moving, or re-chain a freed one? As drafted they cannot, and
       their only play is holding the pens.
