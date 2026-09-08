@@ -53,6 +53,14 @@
   Everything else is jungle: thick vegetation, ruins and scattered temple
   stones running out to every table edge.
 
+  #block(
+    width: 100%,
+    stroke: 1pt + gold,
+    inset: 3pt,
+    fill: parchment-dark,
+    image("art/session-2-battle-1-map.png", width: 100%),
+  )
+
   #special-rule[Camp Terrain][
     Pens, wagons and timber piles count as obstacles. Furnaces and braziers
     are impassable terrain. Thick vegetation is difficult terrain and blocks
@@ -74,8 +82,9 @@
 #deployment(draft: true)[
   Deployment order follows the standard rules.
 
-  The Chaos Dwarfs deploy anywhere within the camp: a 24" by 24" square
-  centred on the middle of the table.
+  The Chaos Dwarfs deploy anywhere within the camp, which is everything more
+  than 12" from a table edge: a 48" by 24" rectangle in the middle of a 72" by
+  48" table.
 
   The Lizardmen deploy along the table edges. Each unit is placed with
   its rear rank touching a table edge, facing in towards the camp. They may
