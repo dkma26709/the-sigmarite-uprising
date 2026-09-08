@@ -104,7 +104,7 @@
   A slain beast scores for nobody, so a cannonball settles nothing.
 ]
 
-#special-rules(draft: true)[
+#special-rules[
   #special-rule[The Sacred Beasts][
     Three beasts are chained in the camp: two Lesser Sacred Beasts and one
     Great Sacred Beast. They belong to neither player and are controlled by
@@ -177,24 +177,6 @@
 
     A Lizardmen unit that a stampeding beast engages therefore strikes no
     blows against it. Work out the combat resolution as normal.
-  ]
-
-  #to-be-decided[
-    Open questions for the table:
-
-    - Is a full turn in base contact too slow, given six turns and a 10"
-      jungle deployment? A faster alternative: base contact at the end of the
-      Movement phase, then roll a D6, freeing the beast on a 4+, retrying
-      each turn.
-    - Do the beast profiles hold up at 1,500 points? The Great Beast is
-      pitched at roughly Stegadon weight and could flatten a hero-only
-      warband on a bad scatter.
-    - May the Chaos Dwarfs act on the beasts at all: reinforce chains, goad a
-      beast into moving, or re-chain a freed one? As drafted they cannot, and
-      their only play is holding the pens.
-    - Are the deployment zones right? Lizardmen encircling the camp is the
-      correct picture, but it may be a heavy advantage, especially if they
-      also win the roll for the first turn.
   ]
 ]
 
