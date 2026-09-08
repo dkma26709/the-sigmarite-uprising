@@ -185,7 +185,7 @@
 
     For each *Lesser Sacred Beast* still chained at the end of the battle, the
     Chaos Dwarf player rolls once on the table below. If *both* Lesser Beasts
-    are still chained, they roll one additional time: three rolls in all.
+    are still chained, they roll one additional time.
 
     #table(
       columns: (auto, 1fr),
@@ -193,9 +193,7 @@
       table.header[D3][Bought at Auction],
       [1], [Breath of Hashut],
       [2], [Hellbound Standard],
-      [3], [A further mutation of the *Daemonbinder Armour*: roll once on the
-            Random Gifts of the Gods table and add the result to the armour.
-            Reroll if the Chaos Dwarfs have not forged it.],
+      [3], [A further mutation of the *Daemonbinder Armour*],
     )
 
     Reroll duplicate results. Each item may only be bought once.
@@ -209,8 +207,7 @@
     life.
 
     The Chaos Dwarf player gains *The Bellowing Sabatons* and may give them to
-    an eligible character. The bearer gains the *Stomp* special rule, making
-    D6 stomp attacks.
+    any character. The bearer gains the _Stomp (D6)_ special rule.
   ]
 
   #to-be-decided[
