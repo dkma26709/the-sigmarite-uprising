@@ -159,6 +159,10 @@
     fought in the Close Combat phase as normal. If the path takes the
     beast into impassable terrain or off the table, it stops 1" short.
 
+    The beasts know their own. The Lizardmen player may reroll any stampede
+    roll, taking up both the Scatter dice and the 2D6 together. The second
+    result stands.
+
     A freed beast never flees and never breaks, and it never pursues a
     fleeing enemy. When the unit it is fighting flees or is destroyed, the
     beast simply stands where it is and stampedes again at the start of the
