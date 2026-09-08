@@ -191,9 +191,11 @@
       columns: (auto, 1fr),
       align: (center, left),
       table.header[D3][Bought at Auction],
-      [1], [_To be provided_],
-      [2], [_To be provided_],
-      [3], [_To be provided_],
+      [1], [Breath of Hashut],
+      [2], [Hellbound Standard],
+      [3], [A further mutation of the *Daemonbinder Armour*: roll once on the
+            Random Gifts of the Gods table and add the result to the armour.
+            Reroll if the Chaos Dwarfs have not forged it.],
     )
 
     Reroll duplicate results. Each item may only be bought once.
@@ -212,7 +214,6 @@
   ]
 
   #to-be-decided[
-    - The three items on the auction table.
-    - What a freed beast is worth to the Lizardmen, if anything.
+    What a freed beast is worth to the Lizardmen, if anything.
   ]
 ]
