@@ -74,8 +74,8 @@
 #deployment(draft: true)[
   Deployment order follows the standard rules.
 
-  The Chaos Dwarfs deploy anywhere within the camp: the band 24" wide running
-  across the middle of the table.
+  The Chaos Dwarfs deploy anywhere within the camp: a 24" by 24" square
+  centred on the middle of the table.
 
   The Lizardmen deploy along the table edges. Each unit is placed with
   its rear rank touching a table edge, facing in towards the camp. They may
