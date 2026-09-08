@@ -159,9 +159,9 @@
     fought in the Close Combat phase as normal. If the path takes the
     beast into impassable terrain or off the table, it stops 1" short.
 
-    The beasts know their own. The Lizardmen player may reroll any stampede
-    roll, taking up both the Scatter dice and the 2D6 together. The second
-    result stands.
+    The beasts know their own. Once per round for each freed beast, the
+    Lizardmen player may reroll that beast's Scatter dice. The 2D6 is not
+    rerolled, and the second direction stands.
 
     A freed beast never flees and never breaks, and it never pursues a
     fleeing enemy. When the unit it is fighting flees or is destroyed, the
