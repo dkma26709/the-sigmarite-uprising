@@ -72,10 +72,12 @@
 ]
 
 #deployment(draft: true)[
-  The Chaos Dwarfs deploy first, anywhere within the camp: the band 24" wide
-  running across the middle of the table.
+  Deployment order follows the standard rules.
 
-  The Lizardmen then deploy along the table edges. Each unit is placed with
+  The Chaos Dwarfs deploy anywhere within the camp: the band 24" wide running
+  across the middle of the table.
+
+  The Lizardmen deploy along the table edges. Each unit is placed with
   its rear rank touching a table edge, facing in towards the camp. They may
   use all four edges and split into as many separate groups as they wish: the
   jungle gives up its warriors from every side at once.
