@@ -153,17 +153,16 @@
 
     At the start of each new round, before either player moves, roll for every
     freed beast that is not engaged in close combat, resolving the Great Beast
-    first. Roll the Scatter dice and 2D6, and move the beast 2D6" in the
-    direction shown. The beast always scatters: on a Hit, use the small arrow
-    printed on that face.
+    first.
+    Roll the Scatter dice and 2D6, and move the beast 2D6" in the
+    direction shown. On a Hit, use the small arrow printed on that face.
 
     If the beast's path takes it into a unit of either army, it stops there
     and engages that unit. It counts as having charged, and the combat is
-    fought in that round's Close Combat phase as normal. If the path takes the
+    fought in the Close Combat phase as normal. If the path takes the
     beast into impassable terrain or off the table, it stops 1" short.
 
-    A freed beast never flees and never breaks, and it does not roll for
-    random movement in a round in which it begins engaged. It never pursues a
+    A freed beast never flees and never breaks, and it never pursues a
     fleeing enemy. When the unit it is fighting flees or is destroyed, the
     beast simply stands where it is and stampedes again at the start of the
     next round.
