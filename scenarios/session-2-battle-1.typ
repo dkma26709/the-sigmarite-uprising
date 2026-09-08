@@ -119,12 +119,12 @@
       [Great Sacred Beast], [6], [3], [0], [6], [6], [6], [2], [4], [6],
     )
 
-    *Lesser Sacred Beast:* Scaly Skin (4+), causes _Fear_, Unbreakable,
-    Immune to Psychology.
+    Both are *Monsters*, with natural armour of *4+*, and both are
+    Unbreakable and Immune to Psychology.
 
-    *Great Sacred Beast:* Scaly Skin (3+), Large Target, causes _Terror_,
-    Unbreakable, Immune to Psychology, and D6+1 Impact Hits at Strength 6
-    when it charges.
+    *Lesser Sacred Beast:* causes _Fear_.
+
+    *Great Sacred Beast:* Large Target, causes _Terror_.
 
     While chained, a beast may not move, may not attack, and does not fight
     back if attacked. It still causes Fear or Terror.
