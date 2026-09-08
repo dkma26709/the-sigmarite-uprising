@@ -101,8 +101,7 @@
   Four victory points are on the table. The highest total wins; equal totals
   are a draw.
 
-  A slain beast scores for nobody. Neither side can settle the question with
-  a cannonball.
+  A slain beast scores for nobody, so a cannonball settles nothing.
 ]
 
 #special-rules(draft: true)[
@@ -169,9 +168,17 @@
   ]
 
   #special-rule[Killing a Beast][
-    A freed beast may be attacked by either army under the normal rules. A
-    slain beast is worth no victory points to either player, and the Lizardmen
-    gain nothing from a corpse.
+    The beasts are sacred. No Lizardmen model may attack one, whether chained
+    or freed, in close combat, with shooting, or with a spell. Only the Chaos
+    Dwarf player may attack them.
+
+    A Lizardmen unit that a stampeding beast engages therefore strikes no
+    blows against it. Work out the combat as normal, counting only the beast's
+    attacks. If the unit breaks, it flees, and the beast does not pursue.
+
+    A slain beast is worth no victory points to either player. The Chaos
+    Dwarfs can put a beast down to deny the Lizardmen, but they score nothing
+    for the carcass either.
   ]
 
   #to-be-decided[
