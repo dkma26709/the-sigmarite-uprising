@@ -153,14 +153,12 @@
     first. A freed beast therefore stampedes twice in every round.
     Roll the Scatter dice and 2D6, and move the beast 2D6" in the
     direction shown. On a Hit, use the small arrow printed on that face.
+    However, the Lizardmen player may reroll the Scatter dice.
 
     If the beast's path takes it into a unit of either army, it stops there
     and engages that unit. It counts as having charged, and the combat is
     fought in the Close Combat phase as normal. If the path takes the
     beast into impassable terrain or off the table, it stops 1" short.
-
-    For each freed beast, the Lizardmen player may reroll that beast's
-    Scatter dice.
 
     A freed beast never flees and never breaks, and it never pursues a
     fleeing enemy. When the unit it is fighting flees or is destroyed, the
