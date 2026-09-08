@@ -150,9 +150,9 @@
     A freed beast is not a Lizardmen unit. It is a terrified animal loose in a
     burning camp, and it treats every model of both armies as an enemy.
 
-    At the start of each new round, before either player moves, roll for every
+    At the start of each player turn, before that player moves, roll for every
     freed beast that is not engaged in close combat, resolving the Great Beast
-    first.
+    first. A freed beast therefore stampedes twice in every round.
     Roll the Scatter dice and 2D6, and move the beast 2D6" in the
     direction shown. On a Hit, use the small arrow printed on that face.
 
@@ -164,7 +164,7 @@
     A freed beast never flees and never breaks, and it never pursues a
     fleeing enemy. When the unit it is fighting flees or is destroyed, the
     beast simply stands where it is and stampedes again at the start of the
-    next round.
+    next turn.
   ]
 
   #special-rule[Killing a Beast][
