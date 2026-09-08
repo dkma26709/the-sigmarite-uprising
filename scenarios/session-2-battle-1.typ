@@ -28,7 +28,7 @@
   ],
 )
 
-#armies(draft: true)[
+#armies[
   *1,500 points* per side: Chaos Dwarfs against Lizardmen.
 
   Campaign list rules apply:
@@ -41,7 +41,7 @@
   of neither force. See *The Sacred Beasts*.
 ]
 
-#battlefield(draft: true)[
+#battlefield[
   A temporary Chaos Dwarf work camp hacked out of dense jungle. The table is
   6 by 4 feet.
 
@@ -79,7 +79,7 @@
   ]
 ]
 
-#deployment(draft: true)[
+#deployment[
   Deployment order follows the standard rules.
 
   The Chaos Dwarfs deploy anywhere within the camp, which is everything more
@@ -94,11 +94,11 @@
   Vanguard, Scouts and Ambushers work as normal.
 ]
 
-#first-turn(draft: true)[
+#first-turn[
   The first turn is determined by the standard rules.
 ]
 
-#game-length(draft: true)[
+#game-length[
   The game ends after six turns.
 ]
 
