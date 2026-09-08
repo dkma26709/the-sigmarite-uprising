@@ -124,7 +124,7 @@
 
     *Lesser Sacred Beast:* causes _Fear_.
 
-    *Great Sacred Beast:* Large Target, causes _Terror_.
+    *Great Sacred Beast:* causes _Terror_.
 
     While chained, a beast may not move, may not attack, and does not fight
     back if attacked. A chained beast causes neither Fear nor Terror: it is
