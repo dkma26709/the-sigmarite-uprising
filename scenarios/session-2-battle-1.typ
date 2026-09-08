@@ -168,9 +168,14 @@
   ]
 
   #special-rule[Killing a Beast][
-    The beasts are sacred. No Lizardmen model may attack one, whether chained
-    or freed, in close combat, with shooting, or with a spell. Only the Chaos
-    Dwarf player may attack them.
+    The beasts are sacred. No Lizardmen model may harm one, whether chained or
+    freed: no close combat attacks, no shooting, and no spell that inflicts
+    wounds or otherwise damages the beast. Only the Chaos Dwarf player may
+    attack them.
+
+    The Lizardmen may still cast harmless spells on a beast: hexes, curses and
+    other effects that slow, steer or hinder it are all allowed, so long as
+    the spell does no damage.
 
     A Lizardmen unit that a stampeding beast engages therefore strikes no
     blows against it. Work out the combat as normal, counting only the beast's
