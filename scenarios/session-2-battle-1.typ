@@ -115,8 +115,8 @@
       columns: 10,
       align: center,
       table.header[Beast][M][WS][BS][S][T][W][I][A][Ld],
-      [Lesser Sacred Beast], [7], [3], [0], [5], [5], [4], [2], [3], [5],
-      [Great Sacred Beast], [6], [3], [0], [6], [6], [6], [2], [4], [6],
+      [Lesser Sacred Beast], [5], [3], [0], [5], [5], [4], [2], [3], [5],
+      [Great Sacred Beast], [5], [3], [0], [6], [6], [6], [2], [4], [6],
     )
 
     Both are *Monsters*, with natural armour of *4+*, and both are
@@ -127,7 +127,9 @@
     *Great Sacred Beast:* Large Target, causes _Terror_.
 
     While chained, a beast may not move, may not attack, and does not fight
-    back if attacked. It still causes Fear or Terror.
+    back if attacked. A chained beast causes neither Fear nor Terror: it is
+    penned, roped and plainly helpless. Those rules apply only once it is
+    freed.
   ]
 
   #special-rule[Breaking the Chains][
