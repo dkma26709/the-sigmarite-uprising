@@ -148,9 +148,9 @@
     burning camp, and it treats every model of both armies as an enemy.
 
     At the start of each player turn, before that player moves, roll for every
-    freed beast that is not engaged in close combat, resolving the Great Beast
-    first. Roll the Scatter dice and 2D6, and move the beast 2D6" in the
-    direction shown. On a Hit, use the small arrow printed on that face.
+    freed beast, resolving the Great Beast first. Roll the Scatter dice and
+    2D6, and move the beast 2D6" in the direction shown. On a Hit, use the
+    small arrow printed on that face.
     The Lizardmen player may reroll the Scatter dice.
 
     If the beast's path takes it into a unit of either army, it stops there
