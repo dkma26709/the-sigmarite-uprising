@@ -207,6 +207,7 @@
     life.
 
     The Chaos Dwarf player gains *The Bellowing Sabatons* and may give them to
-    any character. The bearer gains the _Stomp (D6)_ special rule.
+    any character. The bearer gains the _Stomp (D6)_ special rule, resolved
+    at Strength 4.
   ]
 ]
