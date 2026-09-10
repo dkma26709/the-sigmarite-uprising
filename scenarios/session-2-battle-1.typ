@@ -90,7 +90,7 @@
   use all four edges and split into as many separate groups as they wish: the
   jungle gives up its warriors from every side at once.
 
-  Vanguard, Scouts and Ambushers work as normal.
+  Scouts and Ambushers work as normal. Vanguard cannot be used.
 ]
 
 #first-turn[
@@ -149,8 +149,7 @@
 
     At the start of each player turn, before that player moves, roll for every
     freed beast that is not engaged in close combat, resolving the Great Beast
-    first. A freed beast therefore stampedes twice in every round.
-    Roll the Scatter dice and 2D6, and move the beast 2D6" in the
+    first. Roll the Scatter dice and 2D6, and move the beast 2D6" in the
     direction shown. On a Hit, use the small arrow printed on that face.
     The Lizardmen player may reroll the Scatter dice.
 
@@ -160,7 +159,7 @@
     beast into impassable terrain or off the table, it stops 1" short.
 
     A freed beast never flees and never breaks, and it never pursues a
-    fleeing enemy. When the unit it is fighting flees or is destroyed, the
+    fleeing enemy. If the unit it is fighting flees or is destroyed, the
     beast simply stands where it is and stampedes again at the start of the
     next turn.
   ]
