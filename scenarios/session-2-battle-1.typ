@@ -9,22 +9,21 @@
   ),
   art: "art/session-2-battle-1.png",
   intro: [
-    #text(weight: 700, style: "normal", fill: iron)[From the ledger of Zhaitrak the Meat Merchant:]
+    #text(weight: 700, style: "normal", fill: iron)[From the journal of Zhaitrak the Meat Merchant:]
 
-    Let it be entered that the expedition has paid for itself twice over.
-    Three beasts taken alive: two of the lesser sort, and one monster of such
+    After an initial setback at the lumber outpost, the campaign has more
+    than paid for itself. Several Lizardmen strongholds have been burned by
+    our mighty artillery. It should be a while before they cause any more
+    disturbance.
+
+    Furthermore, an expedition into the deep jungle secured a massive prize.
+    Three beasts taken alive, two of the lesser sort, and one monster of such
     tonnage that it will drag a siege train through mud that would swallow
-    forty slaves. Slaves cough, slaves starve, slaves organise. A beast
-    merely eats. I have never entered a better line item.
+    forty slaves. I have never had finer stock in hand.
 
-    The jungle disagrees. It has been watching the camp for two days now.
-
-    #v(4pt)
-    #text(weight: 700, style: "normal", fill: iron)[Cut into a temple slab above the camp, in the old glyphs:]
-
-    They have put chains on the ones who were here before the chains. The
-    ledger is not the law. The stars are the law, and the stars have already
-    written what is owed. Take back the herd. Leave the rest for the carrion.
+    The treeline has been still for two days. Not even birds can be heard.
+    The sentries call it an omen, and I have docked them a day's rations for
+    superstition, though I have doubled the watch on the pens...
   ],
 )
 
