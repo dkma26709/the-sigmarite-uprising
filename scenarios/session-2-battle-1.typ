@@ -152,6 +152,8 @@
     2D6, and move the beast 2D6" in the direction shown. On a Hit, use the
     small arrow printed on that face.
     The Lizardmen player may reroll the Scatter dice.
+	
+	If the beast is engaged in combat at the start of the turn it simply breaks from combat.
 
     If the beast's path takes it into a unit of either army, it stops there
     and engages that unit. It counts as having charged, and the combat is
