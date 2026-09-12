@@ -186,18 +186,20 @@
 })
 
 // Framed cover artwork, or a dashed placeholder when there is none yet.
-#let cover-art(art) = if art != none {
-  block(
-    width: 100%,
-    stroke: 1pt + gold,
-    inset: 3pt,
-    fill: parchment-dark,
-    image(art, width: 100%, height: 11.5cm, fit: "cover"),
-  )
+// fit: "cover" fills the full-width frame by cropping the image; "contain"
+// shows the whole image at the given height in a frame that hugs it,
+// centred, which suits portrait artwork.
+#let cover-art(art, height: 11.5cm, fit: "cover") = if art != none {
+  let frame = block.with(stroke: 1pt + gold, inset: 3pt, fill: parchment-dark)
+  if fit == "contain" {
+    align(center, frame(image(art, height: height)))
+  } else {
+    frame(width: 100%, image(art, width: 100%, height: height, fit: fit))
+  }
 } else {
   block(
     width: 100%,
-    height: 11.5cm,
+    height: height,
     stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
     fill: parchment-dark,
     align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
@@ -264,6 +266,8 @@
   name: none,         // the warband's name; none → the faction name and a placeholder
   faction-type: [],   // the army list the warband is built from, e.g. [Empire]
   art: none,          // cover artwork, relative to scenarios/; none → placeholder
+  art-fit: "cover",   // "contain" to show the whole image (see cover-art)
+  art-height: 11.5cm,
   lore: none,         // the warband's story; none → placeholder
   body,
 ) = {
@@ -284,7 +288,7 @@
   ))
   if not print-mode {
     v(10pt)
-    cover-art(art)
+    cover-art(art, height: art-height, fit: art-fit)
   }
   v(12pt)
   if lore != none {

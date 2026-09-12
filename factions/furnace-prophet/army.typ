@@ -4,6 +4,8 @@
   name: [The Host of the Furnace Prophet],
   faction-type: [Empire],
   art: "../factions/furnace-prophet/art.png",
+  art-fit: "contain",
+  art-height: 12.5cm,
   lore: [
     _They were not soldiers. They were cargo._
 
