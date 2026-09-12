@@ -1,6 +1,9 @@
-# Compile every scenario in scenarios/*.typ twice:
+# Compile every scenario in scenarios/*.typ and every army sheet in
+# factions/*/army.typ twice:
 #   pdfs/<name>.pdf        the full colour edition
 #   pdfs/<name>-print.pdf  print-friendly: no cover art, greyscale on white
+# Army sheets are named after their faction folder: pdfs/<faction>-army.pdf
+# The repo is passed as --root so army sheets can import ../../scenarios/template.typ.
 # Requires the Typst CLI: winget install --id Typst.Typst
 $ErrorActionPreference = 'Stop'
 
@@ -15,14 +18,23 @@ if ($null -eq $typst) {
 
 New-Item -ItemType Directory -Force pdfs | Out-Null
 
-Get-ChildItem scenarios -Filter *.typ | Where-Object { $_.BaseName -ne 'template' } | ForEach-Object {
-    Write-Host "Compiling $($_.Name)"
-    & $typst compile $_.FullName "pdfs\$($_.BaseName).pdf"
-    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $($_.Name)" }
+function Compile-Document($src, $name) {
+    Write-Host "Compiling $name"
+    & $typst compile --root $PSScriptRoot $src "pdfs\$name.pdf"
+    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $src" }
 
-    Write-Host "Compiling $($_.Name) (print)"
-    & $typst compile --input print=true $_.FullName "pdfs\$($_.BaseName)-print.pdf"
-    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $($_.Name) (print)" }
+    Write-Host "Compiling $name (print)"
+    & $typst compile --root $PSScriptRoot --input print=true $src "pdfs\$name-print.pdf"
+    if ($LASTEXITCODE -ne 0) { Write-Error "Failed to compile $src (print)" }
+}
+
+Get-ChildItem scenarios -Filter *.typ | Where-Object { $_.BaseName -ne 'template' } | ForEach-Object {
+    Compile-Document $_.FullName $_.BaseName
+}
+
+Get-ChildItem factions -Directory | ForEach-Object {
+    $src = Join-Path $_.FullName 'army.typ'
+    if (Test-Path $src) { Compile-Document $src "$($_.Name)-army" }
 }
 
 Write-Host "Done. PDFs are in pdfs\"

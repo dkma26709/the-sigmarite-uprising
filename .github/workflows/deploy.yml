@@ -23,17 +23,23 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v4
 
-      - name: Compile scenarios to PDF
+      - name: Compile scenarios and army sheets to PDF
         shell: bash
         run: |
           mkdir -p pdfs
           shopt -s nullglob
+          compile() {
+            echo "Compiling $1"
+            typst compile --root . "$1" "pdfs/$2.pdf"
+            typst compile --root . --input print=true "$1" "pdfs/$2-print.pdf"
+          }
           for src in scenarios/*.typ; do
             name="$(basename "$src" .typ)"
             [ "$name" = "template" ] && continue
-            echo "Compiling $src"
-            typst compile "$src" "pdfs/$name.pdf"
-            typst compile --input print=true "$src" "pdfs/$name-print.pdf"
+            compile "$src" "$name"
+          done
+          for src in factions/*/army.typ; do
+            compile "$src" "$(basename "$(dirname "$src")")-army"
           done
 
       - name: Assemble site
