@@ -15,23 +15,47 @@
 )
 
 #battlefield-and-deployment[
-  #photo-to-come[The table before the first turn.]
+  #photo("/reports/photos/session-1-battle-2-deployment.jpg", height: 10cm)[
+    The crypt after deployment, before the Empire's first turn.
+  ]
 
-  _Terrain, objectives and where each side set up, with a photo or the
-  scenario map. Who won the roll for first turn._
+  The Sigmarites deploy their greatswords and warrior priest in the centre,
+  with the state troops on their flank. The outriders are vanguarded forward
+  to fire a volley in turn one.
+
+  The Tomb Kings answer with a horde of archers and a catapult on the hill
+  behind them. Some sneaky chariots are placed on the far flank to give the
+  humans a nasty surprise later in the battle.
 ]
 
 #the-battle[
-  _Turn by turn, told from the table rather than the rulebook: a paragraph
-  or two per turn on the decisions that mattered, the charges and the rolls
-  that swung it. Skip phases where nothing happened. One captioned photo per
-  turn at most._
+  #photo("/reports/photos/session-1-battle-2-turn-1.jpg", height: 10cm)[
+    The end of the Empire's first turn.
+  ]
 
   #turn(1, side: [The Empire])
-  _To be written._
+  The Empire marches its centre forward to close the gap to the enemy army
+  and to get away from the darkness behind them. The outriders stand still,
+  training their repeater handguns on the liche priest's unit. Killing that
+  unit would be a massive advantage.
+
+  In the magic phase Emmerich sees the opportunity and casts _Enchanted
+  Blades of Aiban_ on the outriders.
+
+  The outriders open fire with devastating efficiency, killing the entire
+  unit. The liche priest, however, survives.
 
   #turn(1, side: [Tomb Kings])
-  _To be written._
+  After the initial devastating barrage, it is the Tomb Kings' turn to
+  respond. The chariots move silently along the flank, and the liche priest
+  retreats to the safety of the battle line.
+
+  In anger he summons the power of the old kings and casts _Ptra's
+  Incantation of Righteous Smiting_ on the archer horde.
+
+  The archers use their newfound magical ability to destroy the outriders,
+  but critically _one_ outrider survives. The screaming skull catapult sends
+  a shot into the greatswords, killing many. They hold, however.
 
   #turning-point[
     _The single decision, charge or dice roll that decided it._
