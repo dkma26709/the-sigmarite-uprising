@@ -4,13 +4,15 @@ This repo is the living record of a Warhammer Fantasy Battles narrative campaign
 
 ## Repo layout
 
-- `scenarios/*.typ` — scenario sheets and battle reports, written in [Typst](https://typst.app/)
-- `scenarios/template.typ` — shared template; every scenario imports it
+- `scenarios/*.typ` — scenario sheets, written in [Typst](https://typst.app/)
+- `scenarios/template.typ` — shared template; every scenario, report and army sheet imports it
 - `scenarios/art/` — cover artwork and battlefield maps (PNG)
+- `reports/*.typ` — battle reports, one per scenario, importing the template as `../scenarios/template.typ`
+- `reports/photos/` — photographs taken at the table, embedded in the reports
 - `factions/<name>/army.typ` — army sheets (warband rosters), one per player, written in Typst and compiled to `pdfs/<name>-army.pdf`
 - `manifest.json` — drives the campaign site (`index.html`): factions, scenarios, PDF paths, status
 - `pdfs/` — compiled output, gitignored; never commit PDFs
-- `build.ps1` — compiles every scenario and army sheet to `pdfs/` locally, in both editions (requires the Typst CLI)
+- `build.ps1` — compiles every scenario, report and army sheet to `pdfs/` locally, in both editions (requires the Typst CLI)
 - `.github/workflows/deploy.yml` — on push to `main`: compiles all `.typ` files and deploys the site to GitHub Pages
 
 ## Sessions and files
@@ -18,9 +20,9 @@ This repo is the living record of a Warhammer Fantasy Battles narrative campaign
 Each play session has exactly **two scenarios and two corresponding battle reports**:
 
 - `scenarios/session-<n>-battle-<m>.typ` — the scenario sheet
-- `scenarios/session-<n>-battle-<m>-report.typ` — its battle report, written after the battle
+- `reports/session-<n>-battle-<m>-report.typ` — its battle report, written after the battle
 
-Session work is developed on a branch named `session_<n>`. Every scenario gets a `manifest.json` entry with `id`, `name`, `typ`, `pdf` (`pdfs/<basename>.pdf`), `print` (`pdfs/<basename>-print.pdf`), `report`, `map`, `status` (`planned` or `completed`) and `result`. The site shows the Battle Report button only once `status` is `completed`, and the Print Version button whenever `print` is set.
+Session work is developed on a branch named `session_<n>`; a report written later gets its own branch, e.g. `report_session_1`. Every scenario gets a `manifest.json` entry with `id`, `name`, `typ`, `pdf` (`pdfs/<basename>.pdf`), `print` (`pdfs/<basename>-print.pdf`), `report`, `map`, `status` (`planned` or `completed`) and `result`. The site shows the Battle Report button only once `status` is `completed`, and the Print Version button whenever `print` is set.
 
 ## Scenario document format
 
@@ -63,7 +65,51 @@ Conventions:
 - **Draft chips.** New scenarios mark every included section `(draft: true)`, which renders a dashed "Draft" chip by the heading. Remove the flag per section once the group agrees it at the table. Open design questions go in `#to-be-decided[...]` boxes.
 - **Special rules.** Any section may embed `#special-rule(title)[...]` plaques. Battlefield maps are embedded as framed images inside The Battlefield section.
 - **Sides.** Faction names identify the players; never put human names or labels like "main player" in a document. `sides:` entries are 1-tuples `([Faction],)`, with an optional second element for a narrative role such as "The Slavers".
-- **Reports.** Battle reports use the same wrapper with `cover: false` and the sections `#the-battle`, `#casualties` (eliminated heroes and their D6 death rolls), `#spoils`, `#consequences`.
+- **Reports.** See Battle reports below.
+
+## Battle reports
+
+A battle report is the story of a fought battle, not a log of it. It opens with the result, keeps the turns short and focused on the decisions that mattered, and ends with what the battle means for the campaign. Reports use the scenario wrapper with `cover: false`, so there is no cover page: the compact header carries the title, sides and status, and `intro:` is the result paragraph, one paragraph in the voice of the campaign that tells a reader who stops there who won and how.
+
+```typst
+#import "../scenarios/template.typ": *
+
+#show: scenario.with(
+  title: [The First Battle],
+  round: [Prologue · Battle Report],
+  sides: (([Chaos Dwarfs], [The Slavers]), ([The Empire], [The Uprising])),
+  status: [Fought, write-up in progress],
+  cover: false,
+  intro: [ ... the result paragraph ... ],
+)
+
+#battlefield-and-deployment[
+  #photo("/reports/photos/prologue-deployment.jpg")[The table before the first turn.]
+  ...
+]
+#the-battle[
+  #photo("/reports/photos/prologue-turn-1.jpg")[The end of the first turn.]
+  #turn(1, side: [Chaos Dwarfs]) ...
+  #turning-point[ ... ]
+]
+#the-result[ ... ]
+#casualties[ #death-rolls(([Name], [Warband], [Fell to], [1], [Dead])) ]
+#spoils[ ... ]
+#consequences[ ... ]
+#notes-from-the-table[ ... ]
+```
+
+The sections, in this order, all optional (the forces are not restated: the scenario sheet and army sheets already define them):
+
+- **The Battlefield & Deployment** · terrain, objectives, who set up where, who got first turn. One photo or the scenario map.
+- **The Battle** · turn by turn under `#turn(n, side: [...])` headings (omit `side:` for a whole game turn). A paragraph or two per turn on the decisions, charges and rolls that swung it; skip phases where nothing happened; at most one captioned `#photo` per game turn, placed above the turn headings it illustrates. The moment the battle turned goes in a `#turning-point[...]` plaque, written so it can be quoted later in the campaign.
+- **The Result** · who won and by what measure, and the state of both warbands at the end.
+- **Casualties & Death Rolls** · a `#death-rolls(...)` table of every eliminated hero: hero, warband, what they fell to, the D6, the fate. Empty for an unwritten report.
+- **Spoils** · equipment scavenged, magic items seized, boons granted, each naming the hero who now carries it so the army sheets can be updated.
+- **Consequences** · standings, how the warbands changed, the hook into the next battle. The session log in `Campaign Reference.md` summarises this section.
+- **Notes From the Table** · out of character: rules questions, what the scenario's special rules did well or badly, changes for next session.
+
+Photos live in `reports/photos/` and are referenced from the repo root (`/reports/photos/<file>.jpg`, the leading slash resolves against the build `--root`); use `#photo-to-come[caption]` for a captioned placeholder until they arrive. Photos go above the text they illustrate, never below it. A report stub with placeholder text exists for every scenario from the moment the scenario is written; the manifest `report` path points at its PDF and the site shows it once the scenario's `status` is `completed`.
 
 ## Army sheets
 
@@ -102,4 +148,4 @@ Do not use em or en dashes ("—") in campaign documents; restructure with comma
 
 ## Building
 
-Install Typst (e.g. `winget install --id Typst.Typst`), then run `.\build.ps1` from the repo root; it emits both editions of every scenario. To compile a single print edition by hand: `typst compile --root . --input print=true scenarios/<name>.typ pdfs/<name>-print.pdf` (the `--root .` is what lets army sheets import the template from `scenarios/`). Serve the folder (e.g. `python -m http.server`) to preview the site with the compiled PDFs. Editing `.typ` files with encoding-unaware tools can corrupt UTF-8 characters like "·"; use an editor or tool that preserves UTF-8.
+Install Typst (e.g. `winget install --id Typst.Typst`), then run `.\build.ps1` from the repo root; it emits both editions of every scenario, report and army sheet. To compile a single print edition by hand: `typst compile --root . --input print=true scenarios/<name>.typ pdfs/<name>-print.pdf` (the `--root .` is what lets reports and army sheets import the template from `scenarios/`). Serve the folder (e.g. `python -m http.server`) to preview the site with the compiled PDFs. Editing `.typ` files with encoding-unaware tools can corrupt UTF-8 characters like "·"; use an editor or tool that preserves UTF-8.

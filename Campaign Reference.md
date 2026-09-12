@@ -1,6 +1,6 @@
 # The Sigmarite Uprising — Campaign Reference
 
-The authoritative record of the campaign: rules, roster, session log, and reward catalogue. Battle write-ups live in `scenarios/`; this document carries the summaries and standings.
+The authoritative record of the campaign: rules, roster, session log, and reward catalogue. Battle write-ups live in `reports/`; this document carries the summaries and standings.
 
 ---
 

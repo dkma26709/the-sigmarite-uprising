@@ -1,4 +1,5 @@
-# Compile every scenario in scenarios/*.typ and every army sheet in
+# Compile every scenario in scenarios/*.typ, every battle report in
+# reports/*.typ and every army sheet in
 # factions/*/army.typ twice:
 #   pdfs/<name>.pdf        the full colour edition
 #   pdfs/<name>-print.pdf  print-friendly: no cover art, greyscale on white
@@ -29,6 +30,10 @@ function Compile-Document($src, $name) {
 }
 
 Get-ChildItem scenarios -Filter *.typ | Where-Object { $_.BaseName -ne 'template' } | ForEach-Object {
+    Compile-Document $_.FullName $_.BaseName
+}
+
+Get-ChildItem reports -Filter *.typ -ErrorAction SilentlyContinue | ForEach-Object {
     Compile-Document $_.FullName $_.BaseName
 }
 

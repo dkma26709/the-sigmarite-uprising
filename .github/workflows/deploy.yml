@@ -23,7 +23,7 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v4
 
-      - name: Compile scenarios and army sheets to PDF
+      - name: Compile scenarios, battle reports and army sheets to PDF
         shell: bash
         run: |
           mkdir -p pdfs
@@ -37,6 +37,9 @@ jobs:
             name="$(basename "$src" .typ)"
             [ "$name" = "template" ] && continue
             compile "$src" "$name"
+          done
+          for src in reports/*.typ; do
+            compile "$src" "$(basename "$src" .typ)"
           done
           for src in factions/*/army.typ; do
             compile "$src" "$(basename "$(dirname "$src")")-army"

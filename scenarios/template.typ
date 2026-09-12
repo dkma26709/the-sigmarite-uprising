@@ -13,8 +13,10 @@
 //   special-rules, aftermath — plus special-rule(title)[...] plaques,
 //   which may be attached inside any section.
 //
-// Battle reports pass `cover: false` and use: the-battle, casualties,
-// spoils, consequences.
+// Battle reports (reports/*.typ) pass `cover: false` and use:
+// battlefield-and-deployment, the-battle (with turn, photo, turning-point),
+// the-result, casualties (with death-rolls), spoils, consequences,
+// notes-from-the-table.
 //
 // Army sheets (factions/<name>/army.typ) use:
 //   #show: army-sheet.with(name: [...], faction-type: [...], lore: [...])
@@ -94,12 +96,57 @@
 #let aftermath(body, draft: false) = section("Aftermath", body, accent: blood, draft: draft)
 #let overview(body, draft: false) = section("Overview", body, draft: draft)
 
-// Battle-report sections — reports use the same scenario() wrapper with
-// cover: false, typically with round: [Session N · Battle Report].
+// Battle-report sections, in reading order — reports use the same scenario()
+// wrapper with cover: false and round: [Session N · Battle Report]. The
+// intro: is the result paragraph; all sections are optional.
+#let battlefield-and-deployment(body) = section("The Battlefield & Deployment", body)
 #let the-battle(body) = section("The Battle", body)
+#let the-result(body) = section("The Result", body, accent: ember)
 #let casualties(body) = section("Casualties & Death Rolls", body, accent: blood)
 #let spoils(body) = section("Spoils", body, accent: ember)
 #let consequences(body) = section("Consequences", body, accent: blood)
+#let notes-from-the-table(body) = section("Notes From the Table", body)
+
+// A turn heading inside The Battle: #turn(1, side: [Chaos Dwarfs]) renders
+// "Turn 1 · Chaos Dwarfs"; omit side: for a whole game turn.
+#let turn(n, side: none) = {
+  v(6pt)
+  block(sticky: true, text(
+    size: 10.5pt, weight: 700, fill: ember, tracking: 1pt,
+    smallcaps(if side == none [Turn #n] else [Turn #n · #side]),
+  ))
+  v(2pt)
+}
+
+// A framed photograph or map with an italic caption beneath it. Paths are
+// resolved from the repo root (the --root of every build), so give them
+// with a leading slash, e.g. "/reports/photos/prologue-turn-1.jpg".
+#let photo(path, caption, height: 7cm) = align(center, block(breakable: false, {
+  block(stroke: 1pt + gold, inset: 3pt, fill: parchment-dark, image(path, height: height))
+  v(2pt)
+  text(size: 9pt, style: "italic", fill: ink.lighten(20%), caption)
+}))
+
+// A dashed placeholder, with caption, where a photograph will go.
+#let photo-to-come(caption, height: 5cm) = align(center, block(breakable: false, {
+  block(
+    width: 80%, height: height,
+    stroke: (paint: gold, thickness: 1pt, dash: "dashed"), fill: parchment-dark,
+    align(center + horizon, text(fill: gold, size: 10pt, tracking: 2pt, smallcaps[Photograph to come])),
+  )
+  v(2pt)
+  text(size: 9pt, style: "italic", fill: ink.lighten(20%), caption)
+}))
+
+// The Casualties & Death Rolls table. Each row is (hero, warband, fell-to,
+// d6, fate); pass no rows for an empty table to fill in at the table.
+#let death-rolls(..rows) = table(
+  columns: (1.5fr, 1fr, 2fr, 0.6fr, 1fr),
+  stroke: 0.5pt + gold.lighten(40%),
+  fill: (_, y) => if y == 0 { parchment-dark } else { none },
+  [*Hero*], [*Warband*], [*Fell to*], [*D6*], [*Fate*],
+  ..rows.pos().flatten(),
+)
 
 // A named special rule in a bordered plaque. Attach inside any section.
 #let special-rule(title, body) = block(
@@ -114,6 +161,10 @@
     body
   },
 )
+
+// The decision, charge or dice roll a battle turned on: a plaque inside
+// The Battle, written so it can be quoted later in the campaign.
+#let turning-point(body, title: [The Moment the Battle Turned]) = special-rule(title, body)
 
 // An open design question — visibly flagged so drafts are never mistaken
 // for agreed rules.
