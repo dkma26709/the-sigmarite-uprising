@@ -298,13 +298,13 @@
   body
 }
 
-// A magic item carried in a hero's equipment list. The name and its kind
-// and cost appear in the Equipment panel; the rule is repeated under
-// Special Rules, headed by the item name.
-//   magic-item([Ring of St. Horst], kind: [Enchanted item], points: 20)[...]
-#let magic-item(name, kind: [Magic item], points: none, rule) = (
-  item: name,
-  note: if points == none { kind } else [#kind, #points pts],
+// A magic item carried in a hero's equipment list. It appears in the
+// Equipment panel as "Name (Kind)"; the rule is repeated under Special
+// Rules, headed by the item name.
+//   magic-item([Ring of St. Horst], kind: [Enchanted item])[...]
+#let magic-item(name, kind: [Magic item], rule) = (
+  item: [#name (#kind)],
+  name: name,
   rule: rule,
 )
 
@@ -352,7 +352,7 @@
 
   let items = as-list(equipment)
   let gear = items.map(e =>
-    if type(e) == dictionary { (e.item, e.note) }
+    if type(e) == dictionary { (e.item, []) }
     else if type(e) == array { e }
     else { (e, []) })
   while gear.len() < slots { gear.push(([], [])) }
@@ -364,14 +364,20 @@
     rows: (auto, 5.5cm),
     stroke: panel-stroke,
     inset: 10pt,
-    hero-panel("Equipment", table(
-      columns: (1.1fr, 1fr),
+    hero-panel("Equipment", {
+      set par(justify: false)
+      table(
+      columns: (1.6fr, 1fr),
       align: left + horizon,
       inset: (x: 6pt, y: 5pt),
       stroke: 0.5pt + gold.lighten(40%),
       fill: none,
-      ..gear.map(((item, note)) => (block(height: 12pt, item), block(height: 12pt, note))).flatten(),
-    )),
+      // Blank rows keep a writing height; filled rows grow with their text.
+      ..gear.map(((item, note)) => (
+        if item == [] { block(height: 12pt) } else { item },
+        note,
+      )).flatten(),
+    )}),
     hero-panel("Special Rules", accent: ember, {
       for rule in as-list(special-rules) {
         text(style: "italic", rule)
@@ -379,7 +385,7 @@
       }
       for it in item-rules {
         v(6pt)
-        block(text(weight: 700, style: "italic", it.item) + [. ] + it.rule)
+        block(text(style: "italic", text(weight: 700, it.name) + [. ] + it.rule))
       }
     }),
     hero-panel("Wounds", accent: blood, if wounds != none { wounds }),

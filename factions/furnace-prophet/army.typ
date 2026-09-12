@@ -35,7 +35,7 @@
   profile: (4, 4, 3, 4, 4, 2, 4, 2, 8),
   equipment: (
     [Hand weapon], [Heavy armour], [Shield],
-    magic-item([Ring of St. Horst], kind: [Enchanted item], points: 20)[
+    magic-item([Ring of St. Horst], kind: [Enchanted item])[
       Sigmarite only. The model carrying the Ring of St. Horst and any unit
       they join may re-roll any failed Leadership test.
     ],
