@@ -94,7 +94,7 @@ Each faction's roster is a Typst army sheet, `factions/<name>/army.typ`, importi
 )
 ```
 
-Page 1 is a cover: masthead, faction-type box, optional `art:` and the lore. Every `#hero` then gets its own page: a profile line, and four boxed panels for Equipment, Special Rules, Wounds and Experience Buffs. Equipment entries are an item, an `(item, note)` pair, or a `magic-item(name, kind:)[rule]`, which lists the item under Equipment as "Name (Kind)" and repeats its rule under Special Rules headed by the item name (points costs are not recorded); empty rows are padded to six so gear won at the table can be pencilled in, and `wounds`/`experience` left as `none` render as empty boxes for the same reason. The manifest entry for a faction tab uses `pdf` and `print` (like scenarios) instead of `md`, and the site embeds the PDF.
+Page 1 is a cover: masthead, faction-type box, optional `art:` and the lore. Every `#hero` then gets its own page: a profile line, and four boxed panels for Equipment, Special Rules, Wounds and Experience Buffs. Equipment entries are an item, an `(item, note)` pair, or a `magic-item(name, kind:)[rule]`, which lists the item under Equipment with its kind on a second line and repeats its rule under Special Rules headed by the item name (points costs are not recorded); empty rows are padded to six so gear won at the table can be pencilled in, and `wounds`/`experience` left as `none` render as empty boxes for the same reason. The manifest entry for a faction tab uses `pdf` and `print` (like scenarios) instead of `md`, and the site embeds the PDF.
 
 ## Writing style
 

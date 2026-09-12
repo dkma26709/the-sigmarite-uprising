@@ -299,11 +299,11 @@
 }
 
 // A magic item carried in a hero's equipment list. It appears in the
-// Equipment panel as "Name (Kind)"; the rule is repeated under Special
-// Rules, headed by the item name.
+// Equipment panel as the name with its kind on a second line; the rule is
+// repeated under Special Rules, headed by the item name.
 //   magic-item([Ring of St. Horst], kind: [Enchanted item])[...]
 #let magic-item(name, kind: [Magic item], rule) = (
-  item: [#name (#kind)],
+  item: [#name \ #text(size: 8.5pt, fill: gold, kind)],
   name: name,
   rule: rule,
 )
