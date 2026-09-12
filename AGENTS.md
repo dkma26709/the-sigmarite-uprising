@@ -7,7 +7,7 @@ This repo is the living record of a Warhammer Fantasy Battles narrative campaign
 - `scenarios/*.typ` — scenario sheets and battle reports, written in [Typst](https://typst.app/)
 - `scenarios/template.typ` — shared template; every scenario imports it
 - `scenarios/art/` — cover artwork and battlefield maps (PNG)
-- `factions/<name>/army.typ` — army sheets (warband rosters), one per player, written in Typst and compiled to `pdfs/<name>-army.pdf`; a faction may carry a Markdown stub (`army.md`) until its sheet exists
+- `factions/<name>/army.typ` — army sheets (warband rosters), one per player, written in Typst and compiled to `pdfs/<name>-army.pdf`
 - `manifest.json` — drives the campaign site (`index.html`): factions, scenarios, PDF paths, status
 - `pdfs/` — compiled output, gitignored; never commit PDFs
 - `build.ps1` — compiles every scenario and army sheet to `pdfs/` locally, in both editions (requires the Typst CLI)

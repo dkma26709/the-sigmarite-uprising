@@ -8,7 +8,7 @@
       { "id": "army", "label": "Army Sheet", "typ": "factions/furnace-prophet/army.typ", "pdf": "pdfs/furnace-prophet-army.pdf", "print": "pdfs/furnace-prophet-army-print.pdf" }
     ] },
     { "id": "chaos-dwarfs", "name": "Chaos Dwarfs", "player": "Frederik", "tabs": [
-      { "id": "army", "label": "Warband", "md": "factions/chaos-dwarfs/army.md" }
+      { "id": "army", "label": "Army Sheet", "typ": "factions/chaos-dwarfs/army.typ", "pdf": "pdfs/chaos-dwarfs-army.pdf", "print": "pdfs/chaos-dwarfs-army-print.pdf" }
     ] }
   ],
   "scenarios": [

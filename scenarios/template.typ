@@ -261,14 +261,20 @@
 // artwork and lore, followed by one page per hero. Like scenarios, the
 // print edition drops the artwork and switches to greyscale.
 #let army-sheet(
-  name: [],
+  name: none,         // the warband's name; none → the faction name and a placeholder
   faction-type: [],   // the army list the warband is built from, e.g. [Empire]
   art: none,          // cover artwork, relative to scenarios/; none → placeholder
   lore: none,         // the warband's story; none → placeholder
   body,
 ) = {
-  show: campaign-page.with(header: [Army Sheet · #name])
-  masthead(name)
+  let title = if name == none { faction-type } else { name }
+  show: campaign-page.with(header: [Army Sheet · #title])
+  masthead(title)
+  if name == none {
+    v(-6pt)
+    align(center, text(style: "italic", size: 9pt, fill: gold, [Army name to come.]))
+    v(2pt)
+  }
   v(-10pt)
   align(center, block(
     inset: (x: 14pt, y: 8pt),
@@ -359,13 +365,13 @@
   let item-rules = items.filter(e => type(e) == dictionary)
 
   let panel-stroke = 0.6pt + gold
+  set par(justify: false)  // the panels are too narrow to justify well
   grid(
     columns: (1fr, 1fr),
     rows: (auto, 5.5cm),
     stroke: panel-stroke,
     inset: 10pt,
     hero-panel("Equipment", {
-      set par(justify: false)
       table(
       columns: (1.6fr, 1fr),
       align: left + horizon,
