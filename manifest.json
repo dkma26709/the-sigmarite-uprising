@@ -4,20 +4,11 @@
     "reference": "Campaign Reference.md"
   },
   "factions": [
-    { "id": "empire", "name": "The Empire", "player": "Anders", "tabs": [
-      { "id": "army", "label": "Warband", "md": "factions/empire/army.md" }
+    { "id": "furnace-prophet", "name": "The Host of the Furnace Prophet", "player": "Anders", "tabs": [
+      { "id": "army", "label": "Warband", "md": "factions/furnace-prophet/army.md" }
     ] },
     { "id": "chaos-dwarfs", "name": "Chaos Dwarfs", "player": "Frederik", "tabs": [
       { "id": "army", "label": "Warband", "md": "factions/chaos-dwarfs/army.md" }
-    ] },
-    { "id": "tomb-kings", "name": "Tomb Kings", "player": "Kristian", "tabs": [
-      { "id": "army", "label": "Warband", "md": "factions/tomb-kings/army.md" }
-    ] },
-    { "id": "jesper", "name": "Rotating Warband", "player": "Jesper", "tabs": [
-      { "id": "army", "label": "Armies", "md": "factions/jesper/army.md" }
-    ] },
-    { "id": "lizardmen", "name": "Lizardmen", "player": "Daniel", "tabs": [
-      { "id": "army", "label": "Warband", "md": "factions/lizardmen/army.md" }
     ] }
   ],
   "scenarios": [

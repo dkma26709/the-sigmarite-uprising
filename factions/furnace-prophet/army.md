@@ -1,4 +1,4 @@
-# The Empire
+# The Host of the Furnace Prophet
 
 **Commander:** Anders
 **Role:** The Uprising — the enslaved Sigmarites who have turned on their masters.
