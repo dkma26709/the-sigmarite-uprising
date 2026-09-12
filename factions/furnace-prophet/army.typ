@@ -3,6 +3,7 @@
 #show: army-sheet.with(
   name: [The Host of the Furnace Prophet],
   faction-type: [Empire],
+  art: "../factions/furnace-prophet/art.png",
   lore: [
     _They were not soldiers. They were cargo._
 
