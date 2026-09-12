@@ -60,7 +60,6 @@
   unit-type: [Battle Wizard],
   profile: (4, 3, 3, 3, 3, 2, 3, 1, 7),
   equipment: (
-    [Hand weapon],
     magic-item([Rostbringer], kind: [Halberd])[
       Wizard only. The wielder gains +1 Strength, +1 Toughness and +1
       Attack, and has the Terror special rule against Goblins. In addition,
