@@ -298,10 +298,25 @@
   body
 }
 
-// One hero, on its own page. Equipment entries are either a single item or
-// an (item, note) pair; blank rows are padded out to `slots` so gear won at
-// the table can be written in by hand. Wounds and experience buffs may be
-// left as none, which leaves the box empty for the same reason.
+// A magic item carried in a hero's equipment list. The name and its kind
+// and cost appear in the Equipment panel; the rule is repeated under
+// Special Rules, headed by the item name.
+//   magic-item([Ring of St. Horst], kind: [Enchanted item], points: 20)[...]
+#let magic-item(name, kind: [Magic item], points: none, rule) = (
+  item: name,
+  note: if points == none { kind } else [#kind, #points pts],
+  rule: rule,
+)
+
+// Accept a single entry where a list is expected, so ([Hand weapon]) works
+// as well as ([Hand weapon],).
+#let as-list(x) = if type(x) == array { x } else { (x,) }
+
+// One hero, on its own page. Equipment entries are a single item, an
+// (item, note) pair, or a magic-item(); blank rows are padded out to
+// `slots` so gear won at the table can be written in by hand. Wounds and
+// experience buffs may be left as none, which leaves the box empty for the
+// same reason.
 #let hero(
   name,
   unit-type: [],
@@ -335,8 +350,13 @@
   )
   v(10pt)
 
-  let gear = equipment.map(e => if type(e) == array { e } else { (e, []) })
+  let items = as-list(equipment)
+  let gear = items.map(e =>
+    if type(e) == dictionary { (e.item, e.note) }
+    else if type(e) == array { e }
+    else { (e, []) })
   while gear.len() < slots { gear.push(([], [])) }
+  let item-rules = items.filter(e => type(e) == dictionary)
 
   let panel-stroke = 0.6pt + gold
   grid(
@@ -353,9 +373,13 @@
       ..gear.map(((item, note)) => (block(height: 12pt, item), block(height: 12pt, note))).flatten(),
     )),
     hero-panel("Special Rules", accent: ember, {
-      for rule in special-rules {
+      for rule in as-list(special-rules) {
         text(style: "italic", rule)
         linebreak()
+      }
+      for it in item-rules {
+        v(6pt)
+        block(text(weight: 700, style: "italic", it.item) + [. ] + it.rule)
       }
     }),
     hero-panel("Wounds", accent: blood, if wounds != none { wounds }),

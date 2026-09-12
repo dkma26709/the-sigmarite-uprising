@@ -82,14 +82,19 @@ Each faction's roster is a Typst army sheet, `factions/<name>/army.typ`, importi
   [Emmerich Goldhand],
   unit-type: [Battle Wizard],
   profile: (4, 3, 3, 3, 3, 2, 3, 1, 7),   // M WS BS S T W I A Ld
-  equipment: ([Hand weapon], ([Sword of Might], [Scavenged, Session 2])),
+  equipment: (
+    [Hand weapon], ([Sword of Might], [Scavenged, Session 2]),
+    magic-item([Ring of St. Horst], kind: [Enchanted item], points: 20)[
+      ... the item's rule ...
+    ],
+  ),
   special-rules: ([Level 2 Wizard, Lore of Metal],),
   wounds: [ ... lasting injuries ... ],
   experience: [ ... experience buffs ... ],
 )
 ```
 
-Page 1 is a cover: masthead, faction-type box, optional `art:` and the lore. Every `#hero` then gets its own page: a profile line, and four boxed panels for Equipment, Special Rules, Wounds and Experience Buffs. Equipment entries are an item or an `(item, note)` pair; empty rows are padded to six so gear won at the table can be pencilled in, and `wounds`/`experience` left as `none` render as empty boxes for the same reason. The manifest entry for a faction tab uses `pdf` and `print` (like scenarios) instead of `md`, and the site embeds the PDF.
+Page 1 is a cover: masthead, faction-type box, optional `art:` and the lore. Every `#hero` then gets its own page: a profile line, and four boxed panels for Equipment, Special Rules, Wounds and Experience Buffs. Equipment entries are an item, an `(item, note)` pair, or a `magic-item(name, kind:, points:)[rule]`, which lists the item under Equipment and repeats its rule under Special Rules headed by the item name; empty rows are padded to six so gear won at the table can be pencilled in, and `wounds`/`experience` left as `none` render as empty boxes for the same reason. The manifest entry for a faction tab uses `pdf` and `print` (like scenarios) instead of `md`, and the site embeds the PDF.
 
 ## Writing style
 

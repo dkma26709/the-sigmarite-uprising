@@ -33,7 +33,13 @@
   [Sigwald "Furnace Prophet" Eisenfaust],
   unit-type: [Warrior Priest of Sigmar],
   profile: (4, 4, 3, 4, 4, 2, 4, 2, 8),
-  equipment: ([Hand weapon], [Heavy armour], [Shield]),
+  equipment: (
+    [Hand weapon], [Heavy armour], [Shield],
+    magic-item([Ring of St. Horst], kind: [Enchanted item], points: 20)[
+      Sigmarite only. The model carrying the Ring of St. Horst and any unit
+      they join may re-roll any failed Leadership test.
+    ],
+  ),
   special-rules: ([Battle Prayers of Sigmar], [Righteous Fury]),
 )
 
@@ -49,7 +55,7 @@
   [Emmerich Goldhand],
   unit-type: [Battle Wizard],
   profile: (4, 3, 3, 3, 3, 2, 3, 1, 7),
-  equipment: ([Hand weapon],),
+  equipment: ([Hand weapon]),
   special-rules: ([Level 2 Wizard, Lore of Metal],),
   wounds: [
     _Shell shocked:_ If Emmerich was hit by artillery in the previous turn,
