@@ -15,6 +15,17 @@
 //
 // Battle reports pass `cover: false` and use: the-battle, casualties,
 // spoils, consequences.
+//
+// Army sheets (factions/<name>/army.typ) use:
+//   #show: army-sheet.with(name: [...], faction-type: [...], lore: [...])
+//   #hero([Name], unit-type: [...], profile: (M, WS, BS, S, T, W, I, A, Ld),
+//         equipment: (...), special-rules: (...), wounds: [...], experience: [...])
+// Each hero is laid out on its own page: a profile line, then boxed panels
+// for equipment, special rules, wounds and experience buffs, with blank
+// rows left for gear scavenged at the table.
+//
+// Note: image paths (art:) are resolved relative to this file, i.e. the
+// scenarios/ folder, so an army sheet passes "../factions/<name>/art.png".
 
 // Print mode — compile with `typst compile --input print=true` for the
 // print-friendly edition: no cover artwork, no cover page break, and a
@@ -138,23 +149,16 @@
   ),
 ))
 
-#let scenario(
-  title: [],
-  round: [],       // e.g. [Session 1 · Battle One]
-  sides: (),       // array of (name,) or (name, role) entries, e.g. (([Chaos Dwarfs],), ...)
-  art: none,       // path to cover artwork (relative to scenarios/); none → placeholder
-  intro: none,     // cover-page flavour text; none → placeholder
-  status: none,    // e.g. [Fought, write-up pending]
-  cover: true,     // false → compact single-header layout (battle reports)
-  body,
-) = {
+// Shared page setup for every campaign document: A4 parchment, the
+// small-caps header label top right, and the campaign footer.
+#let campaign-page(header: [], body) = {
   set page(
     paper: "a4",
     fill: parchment,
     margin: (x: 2.2cm, y: 2cm),
     header: {
       set text(size: 8pt, fill: ember, tracking: 1.5pt)
-      align(right, smallcaps(round))
+      align(right, smallcaps(header))
     },
     footer: context {
       set text(size: 8pt, fill: gold, tracking: 1pt)
@@ -171,13 +175,49 @@
   set par(justify: true)
   show table: set text(size: 9.5pt)
   set table(stroke: 0.5pt + gold.lighten(40%), fill: (_, y) => if y == 0 { parchment-dark })
+  body
+}
 
-  // Masthead
-  align(center, {
-    text(size: 9pt, fill: gold, tracking: 3pt, smallcaps[The Sigmarite Uprising])
-    v(2pt)
-    text(size: 26pt, weight: 700, fill: iron, title)
-  })
+// The campaign name in small caps over a document title.
+#let masthead(title) = align(center, {
+  text(size: 9pt, fill: gold, tracking: 3pt, smallcaps[The Sigmarite Uprising])
+  v(2pt)
+  text(size: 26pt, weight: 700, fill: iron, title)
+})
+
+// Framed cover artwork, or a dashed placeholder when there is none yet.
+// fit: "cover" fills the full-width frame by cropping the image; "contain"
+// shows the whole image at the given height in a frame that hugs it,
+// centred, which suits portrait artwork.
+#let cover-art(art, height: 11.5cm, fit: "cover") = if art != none {
+  let frame = block.with(stroke: 1pt + gold, inset: 3pt, fill: parchment-dark)
+  if fit == "contain" {
+    align(center, frame(image(art, height: height)))
+  } else {
+    frame(width: 100%, image(art, width: 100%, height: height, fit: fit))
+  }
+} else {
+  block(
+    width: 100%,
+    height: height,
+    stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
+    fill: parchment-dark,
+    align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
+  )
+}
+
+#let scenario(
+  title: [],
+  round: [],       // e.g. [Session 1 · Battle One]
+  sides: (),       // array of (name,) or (name, role) entries, e.g. (([Chaos Dwarfs],), ...)
+  art: none,       // path to cover artwork (relative to scenarios/); none → placeholder
+  intro: none,     // cover-page flavour text; none → placeholder
+  status: none,    // e.g. [Fought, write-up pending]
+  cover: true,     // false → compact single-header layout (battle reports)
+  body,
+) = {
+  show: campaign-page.with(header: round)
+  masthead(title)
 
   if cover {
     // ── Cover page: sides + artwork + intro ──
@@ -191,23 +231,7 @@
     // run straight into the rules rather than leaving a near-empty page.
     if not print-mode {
       v(10pt)
-      if art != none {
-        block(
-          width: 100%,
-          stroke: 1pt + gold,
-          inset: 3pt,
-          fill: parchment-dark,
-          image(art, width: 100%, height: 11.5cm, fit: "cover"),
-        )
-      } else {
-        block(
-          width: 100%,
-          height: 11.5cm,
-          stroke: (paint: gold, thickness: 1pt, dash: "dashed"),
-          fill: parchment-dark,
-          align(center + horizon, text(fill: gold, size: 11pt, tracking: 2pt, smallcaps[Artwork to come])),
-        )
-      }
+      cover-art(art)
     }
     v(12pt)
 
@@ -232,4 +256,149 @@
   }
 
   body
+}
+
+// ── Army sheets ──────────────────────────────────────────────────────────
+// A warband roster: a cover page with the army name, faction type, optional
+// artwork and lore, followed by one page per hero. Like scenarios, the
+// print edition drops the artwork and switches to greyscale.
+#let army-sheet(
+  name: none,         // the warband's name; none → the faction name and a placeholder
+  faction-type: [],   // the army list the warband is built from, e.g. [Empire]
+  art: none,          // cover artwork, relative to scenarios/; none → placeholder
+  art-fit: "cover",   // "contain" to show the whole image (see cover-art)
+  art-height: 11.5cm,
+  lore: none,         // the warband's story; none → placeholder
+  body,
+) = {
+  let title = if name == none { faction-type } else { name }
+  show: campaign-page.with(header: [Army Sheet · #title])
+  masthead(title)
+  if name == none {
+    v(-6pt)
+    align(center, text(style: "italic", size: 9pt, fill: gold, [Army name to come.]))
+    v(2pt)
+  }
+  v(-10pt)
+  align(center, block(
+    inset: (x: 14pt, y: 8pt),
+    stroke: 0.6pt + gold,
+    fill: parchment-dark,
+    [#text(size: 8.5pt, fill: gold, smallcaps[Faction]) #h(8pt) #text(weight: 700, size: 11pt, fill: iron, faction-type)],
+  ))
+  if not print-mode {
+    v(10pt)
+    cover-art(art, height: art-height, fit: art-fit)
+  }
+  v(12pt)
+  if lore != none {
+    block(width: 100%, lore)
+  } else {
+    align(center, text(style: "italic", fill: gold, [Lore to come.]))
+  }
+  body
+}
+
+#let profile-labels = ("M", "WS", "BS", "S", "T", "W", "I", "A", "Ld")
+
+// A titled, bordered panel used for the four quarters of a hero page.
+#let hero-panel(title, body, accent: gold) = {
+  text(size: 10pt, weight: 700, fill: accent, tracking: 1pt, smallcaps(title))
+  v(6pt)
+  body
+}
+
+// A magic item carried in a hero's equipment list. It appears in the
+// Equipment panel as the name with its kind on a second line; the rule is
+// repeated under Special Rules, headed by the item name.
+//   magic-item([Ring of St. Horst], kind: [Enchanted item])[...]
+#let magic-item(name, kind: [Magic item], rule) = (
+  item: [#name \ #text(size: 8.5pt, fill: gold, kind)],
+  name: name,
+  rule: rule,
+)
+
+// Accept a single entry where a list is expected, so ([Hand weapon]) works
+// as well as ([Hand weapon],).
+#let as-list(x) = if type(x) == array { x } else { (x,) }
+
+// One hero, on its own page. Equipment entries are a single item, an
+// (item, note) pair, or a magic-item(); blank rows are padded out to
+// `slots` so gear won at the table can be written in by hand. Wounds and
+// experience buffs may be left as none, which leaves the box empty for the
+// same reason.
+#let hero(
+  name,
+  unit-type: [],
+  profile: (),        // (M, WS, BS, S, T, W, I, A, Ld)
+  points: none,       // none renders as "-"
+  equipment: (),
+  slots: 6,
+  special-rules: (),
+  wounds: none,
+  experience: none,
+) = {
+  pagebreak(weak: true)
+
+  block(breakable: false, {
+    text(size: 8.5pt, fill: gold, tracking: 1.5pt, smallcaps[Character])
+    h(8pt)
+    text(size: 18pt, weight: 700, fill: iron, name)
+    v(-2pt)
+    text(size: 8.5pt, fill: gold, tracking: 1.5pt, smallcaps[Unit Type])
+    h(8pt)
+    text(size: 11pt, fill: ink, unit-type)
+  })
+  v(8pt)
+
+  table(
+    columns: (auto,) + (1fr,) * profile-labels.len() + (auto,),
+    align: center + horizon,
+    inset: (x: 6pt, y: 5pt),
+    [Profile], ..profile-labels.map(l => [*#l*]), [Points],
+    [], ..profile.map(v => [#v]), if points == none [-] else [#points],
+  )
+  v(10pt)
+
+  let items = as-list(equipment)
+  let gear = items.map(e =>
+    if type(e) == dictionary { (e.item, []) }
+    else if type(e) == array { e }
+    else { (e, []) })
+  while gear.len() < slots { gear.push(([], [])) }
+  let item-rules = items.filter(e => type(e) == dictionary)
+
+  let panel-stroke = 0.6pt + gold
+  set par(justify: false)  // the panels are too narrow to justify well
+  grid(
+    columns: (1fr, 1fr),
+    rows: (auto, 5.5cm),
+    stroke: panel-stroke,
+    inset: 10pt,
+    hero-panel("Equipment", {
+      table(
+      columns: (1.6fr, 1fr),
+      align: left + horizon,
+      inset: (x: 6pt, y: 5pt),
+      stroke: 0.5pt + gold.lighten(40%),
+      fill: none,
+      // Blank rows keep a writing height; filled rows grow with their text.
+      ..gear.map(((item, note)) => (
+        if item == [] { block(height: 12pt) } else { item },
+        note,
+      )).flatten(),
+    )}),
+    hero-panel("Special Rules", accent: ember, {
+      for rule in as-list(special-rules) {
+        text(style: "italic", rule)
+        linebreak()
+      }
+      for it in item-rules {
+        v(6pt)
+        block(text(style: "italic", text(weight: 700, it.name) + [. ] + it.rule))
+      }
+    }),
+    hero-panel("Wounds", accent: blood, if wounds != none { wounds }),
+    hero-panel("Experience Buffs", if experience != none { experience }),
+  )
 }

@@ -7,10 +7,10 @@ This repo is the living record of a Warhammer Fantasy Battles narrative campaign
 - `scenarios/*.typ` — scenario sheets and battle reports, written in [Typst](https://typst.app/)
 - `scenarios/template.typ` — shared template; every scenario imports it
 - `scenarios/art/` — cover artwork and battlefield maps (PNG)
-- `factions/<name>/army.md` — warband rosters, one per player
+- `factions/<name>/army.typ` — army sheets (warband rosters), one per player, written in Typst and compiled to `pdfs/<name>-army.pdf`
 - `manifest.json` — drives the campaign site (`index.html`): factions, scenarios, PDF paths, status
 - `pdfs/` — compiled output, gitignored; never commit PDFs
-- `build.ps1` — compiles every scenario to `pdfs/` locally, in both editions (requires the Typst CLI)
+- `build.ps1` — compiles every scenario and army sheet to `pdfs/` locally, in both editions (requires the Typst CLI)
 - `.github/workflows/deploy.yml` — on push to `main`: compiles all `.typ` files and deploys the site to GitHub Pages
 
 ## Sessions and files
@@ -65,10 +65,41 @@ Conventions:
 - **Sides.** Faction names identify the players; never put human names or labels like "main player" in a document. `sides:` entries are 1-tuples `([Faction],)`, with an optional second element for a narrative role such as "The Slavers".
 - **Reports.** Battle reports use the same wrapper with `cover: false` and the sections `#the-battle`, `#casualties` (eliminated heroes and their D6 death rolls), `#spoils`, `#consequences`.
 
+## Army sheets
+
+Each faction's roster is a Typst army sheet, `factions/<name>/army.typ`, importing the same template. It evolves with the campaign: update it after every battle as heroes gain wounds, experience and scavenged gear.
+
+```typst
+#import "../../scenarios/template.typ": *
+
+#show: army-sheet.with(
+  name: [The Host of the Furnace Prophet],
+  faction-type: [Empire],
+  lore: [ ... the warband's story ... ],
+)
+
+#hero(
+  [Emmerich Goldhand],
+  unit-type: [Battle Wizard],
+  profile: (4, 3, 3, 3, 3, 2, 3, 1, 7),   // M WS BS S T W I A Ld
+  equipment: (
+    [Hand weapon], ([Sword of Might], [Scavenged, Session 2]),
+    magic-item([Ring of St. Horst], kind: [Enchanted item])[
+      ... the item's rule ...
+    ],
+  ),
+  special-rules: ([Level 2 Wizard, Lore of Metal],),
+  wounds: [ ... lasting injuries ... ],
+  experience: [ ... experience buffs ... ],
+)
+```
+
+Page 1 is a cover: masthead, faction-type box, optional `art:` and the lore. Artwork defaults to a full-width frame that crops the image; pass `art-fit: "contain"` (and optionally `art-height:`) to show a portrait image whole in a frame that hugs it. Every `#hero` then gets its own page: a profile line, and four boxed panels for Equipment, Special Rules, Wounds and Experience Buffs. Equipment entries are an item, an `(item, note)` pair, or a `magic-item(name, kind:)[rule]`, which lists the item under Equipment with its kind on a second line and repeats its rule under Special Rules headed by the item name (points costs are not recorded); empty rows are padded to six so gear won at the table can be pencilled in, and `wounds`/`experience` left as `none` render as empty boxes for the same reason. The manifest entry for a faction tab uses `pdf` and `print` (like scenarios) instead of `md`, and the site embeds the PDF.
+
 ## Writing style
 
 Do not use em or en dashes ("—") in campaign documents; restructure with commas, colons or periods instead. Use "·" as the separator in labels like "Session 1 · Battle One". Ordinary hyphens in compound words (stand-in, write-up) are fine.
 
 ## Building
 
-Install Typst (e.g. `winget install --id Typst.Typst`), then run `.\build.ps1` from the repo root; it emits both editions of every scenario. To compile a single print edition by hand: `typst compile --input print=true scenarios/<name>.typ pdfs/<name>-print.pdf`. Serve the folder (e.g. `python -m http.server`) to preview the site with the compiled PDFs. Editing `.typ` files with encoding-unaware tools can corrupt UTF-8 characters like "·"; use an editor or tool that preserves UTF-8.
+Install Typst (e.g. `winget install --id Typst.Typst`), then run `.\build.ps1` from the repo root; it emits both editions of every scenario. To compile a single print edition by hand: `typst compile --root . --input print=true scenarios/<name>.typ pdfs/<name>-print.pdf` (the `--root .` is what lets army sheets import the template from `scenarios/`). Serve the folder (e.g. `python -m http.server`) to preview the site with the compiled PDFs. Editing `.typ` files with encoding-unaware tools can corrupt UTF-8 characters like "·"; use an editor or tool that preserves UTF-8.
