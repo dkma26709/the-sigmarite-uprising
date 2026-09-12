@@ -59,7 +59,16 @@
   [Emmerich Goldhand],
   unit-type: [Battle Wizard],
   profile: (4, 3, 3, 3, 3, 2, 3, 1, 7),
-  equipment: ([Hand weapon]),
+  equipment: (
+    [Hand weapon],
+    magic-item([Rostbringer], kind: [Halberd])[
+      Wizard only. If the wielder successfully hits an enemy unit in close
+      combat, that unit suffers -1 to its armour saves for the rest of the
+      game. This is not cumulative. The wielder gains +1 Strength, +1
+      Toughness and +1 Attack, and has the Terror special rule against
+      Goblins.
+    ],
+  ),
   special-rules: ([Level 2 Wizard, Lore of Metal],),
   wounds: [
     _Shell shocked:_ If Emmerich was hit by artillery in the previous turn,
