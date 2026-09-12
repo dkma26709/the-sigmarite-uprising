@@ -786,6 +786,18 @@ function showSection(section) {
   }
 }
 
+// Inline PDF viewer with a download bar; `extraLinks` is prepended to the bar.
+function pdfView(pdf, print, label, extraLinks = '') {
+  const printLink = print
+    ? `<a class="pdf-download" href="${print}" target="_blank">Print Version</a>` : '';
+  return `<div class="pdf-view">
+    <div class="pdf-bar">${extraLinks}${printLink}<a class="pdf-download" href="${pdf}" target="_blank">Open / Download PDF</a></div>
+    <object class="pdf-frame" data="${pdf}" type="application/pdf">
+      <div class="md"><p>This browser cannot display PDFs inline. <a href="${pdf}">Download the ${label}</a> instead.</p></div>
+    </object>
+  </div>`;
+}
+
 async function loadScenario(id) {
   const s = manifest.scenarios.find(s => s.id === id);
   if (!s) return;
@@ -797,14 +809,7 @@ async function loadScenario(id) {
   if (s.pdf) {
     const reportLink = s.report && s.status === 'completed'
       ? `<a class="pdf-download" href="${s.report}" target="_blank">Battle Report</a>` : '';
-    const printLink = s.print
-      ? `<a class="pdf-download" href="${s.print}" target="_blank">Print Version</a>` : '';
-    main.innerHTML = `<div class="pdf-view">
-      <div class="pdf-bar">${reportLink}${printLink}<a class="pdf-download" href="${s.pdf}" target="_blank">Open / Download PDF</a></div>
-      <object class="pdf-frame" data="${s.pdf}" type="application/pdf">
-        <div class="md"><p>This browser cannot display PDFs inline — <a href="${s.pdf}">download the scenario sheet</a> instead.</p></div>
-      </object>
-    </div>`;
+    main.innerHTML = pdfView(s.pdf, s.print, 'scenario sheet', reportLink);
     return;
   }
 
@@ -835,6 +840,11 @@ async function loadFactionTab(factionId, tabId) {
   document.querySelectorAll('#sidebar .sidebar-item').forEach(b => b.classList.toggle('active', b.dataset.id === key));
   const main = document.getElementById('main');
   main.innerHTML = '<p style="color:#6b5f4a">Loading...</p>';
+
+  if (tab.pdf) {
+    main.innerHTML = pdfView(tab.pdf, tab.print, 'army sheet');
+    return;
+  }
 
   try {
     const md = await fetch(tab.md).then(r => r.text());
